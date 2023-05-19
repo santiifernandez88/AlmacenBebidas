@@ -87,8 +87,11 @@ namespace Bar
         public override void btnAltaEmp_Click(object sender, EventArgs e)
         {
             FormAltaBebidas formAltaBebidas = new FormAltaBebidas();
-            formAltaBebidas.Show();
-            ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+            DialogResult dg = formAltaBebidas.ShowDialog();
+            if(dg == DialogResult.OK) 
+            {
+                ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+            }        
         }
     }
 }

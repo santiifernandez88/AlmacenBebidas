@@ -37,6 +37,7 @@ namespace Bar.Formulario_Inventario
             if (Controlador.CrearBebida(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbTipoBebida.SelectedIndex))
             {
                 MessageBox.Show("Se pudo agregar la bebida al inventario.");
+                this.DialogResult = DialogResult.OK;
                 this.Hide();
             }
             else
