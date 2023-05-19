@@ -152,6 +152,6 @@
 
         #endregion
 
-        private ComboBox cmbBebidaFavorita;
+        protected ComboBox cmbBebidaFavorita;
     }
 }

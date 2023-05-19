@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            cmbPuestoTrabajo = new ComboBox();
             SuspendLayout();
             // 
             // lblSueldo
@@ -53,8 +54,8 @@
             // 
             // cmbPuesto
             // 
-            cmbPuesto.Items.AddRange(new object[] { Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor });
-            cmbPuesto.Location = new Point(422, 197);
+            cmbPuesto.Items.AddRange(new object[] { Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor });
+            cmbPuesto.Location = new Point(390, 461);
             // 
             // btnCancelar
             // 
@@ -81,20 +82,53 @@
             // 
             label5.Location = new Point(32, 469);
             // 
+            // cmbPuestoTrabajo
+            // 
+            cmbPuestoTrabajo.FormattingEnabled = true;
+            cmbPuestoTrabajo.Location = new Point(422, 202);
+            cmbPuestoTrabajo.Name = "cmbPuestoTrabajo";
+            cmbPuestoTrabajo.Size = new Size(157, 28);
+            cmbPuestoTrabajo.TabIndex = 26;
+            // 
             // FormModificarEmpleado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateGray;
             ClientSize = new Size(658, 515);
+            Controls.Add(cmbPuestoTrabajo);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormModificarEmpleado";
             Text = "FormModificar";
             Load += FormModificarEmpleado_Load;
+            Controls.SetChildIndex(lblAlta, 0);
+            Controls.SetChildIndex(lblNombre, 0);
+            Controls.SetChildIndex(lblApellido, 0);
+            Controls.SetChildIndex(lblEdad, 0);
+            Controls.SetChildIndex(lblDni, 0);
+            Controls.SetChildIndex(lblSueldo, 0);
+            Controls.SetChildIndex(lblPuesto, 0);
+            Controls.SetChildIndex(txtNombre, 0);
+            Controls.SetChildIndex(txtApellido, 0);
+            Controls.SetChildIndex(txtEdad, 0);
+            Controls.SetChildIndex(txtDni, 0);
+            Controls.SetChildIndex(txtSueldo, 0);
+            Controls.SetChildIndex(btnAceptar, 0);
+            Controls.SetChildIndex(btnReset, 0);
+            Controls.SetChildIndex(cmbPuesto, 0);
+            Controls.SetChildIndex(btnCancelar, 0);
+            Controls.SetChildIndex(lblContraseña, 0);
+            Controls.SetChildIndex(lblNombreUsuario, 0);
+            Controls.SetChildIndex(txtContraseña, 0);
+            Controls.SetChildIndex(txtNombreUsuario, 0);
+            Controls.SetChildIndex(label5, 0);
+            Controls.SetChildIndex(cmbPuestoTrabajo, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
+        private ComboBox cmbPuestoTrabajo;
     }
 }

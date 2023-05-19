@@ -33,7 +33,10 @@ namespace Entidades
         #endregion
 
         #region Empleados
-
+        /// <summary>
+        /// Realiza un hardcodeo de una lista de empleados
+        /// </summary>
+        /// <param name="empleados"></param>
         private static void HarcodearEmpleados(List<Empleado> empleados)
         {
             empleados.Add(new Empleado("Santiago", "Fernández", 19, 44943743, 15000, PuestosDeTrabajo.Jefe));
@@ -42,16 +45,26 @@ namespace Entidades
             empleados.Add(new Empleado("Jorge", "Loriente", 24, 40829451, 10000, PuestosDeTrabajo.Vendedor));
         }
 
+        /// <summary>
+        /// Obtiene la lista de empleados
+        /// </summary>
+        /// <returns>lista de empleados</returns>
         public static List<Empleado> ObtenerEmpleados()
         {
             return empleados;
         }
-
+        /// <summary>
+        /// Guarda un empleado en la lista
+        /// </summary>
+        /// <param name="empleado"></param>
         public static void GuardarEmpleado(Empleado empleado)
         {
             empleados.Add(empleado);
         }
-
+        /// <summary>
+        /// Elimina un empleado de la lista
+        /// </summary>
+        /// <param name="empleado"></param>
         public static void EliminarEmpleado(Empleado empleado)
         {
             empleados.Remove(empleado);
@@ -61,18 +74,28 @@ namespace Entidades
         #endregion
 
         #region Usuarios
+        /// <summary>
+        /// Realiza un hardcodeo de una lista de ususarios
+        /// </summary>
+        /// <param name="usuarios"></param>
         private static void HardcodearUsuarios(List<Usuario> usuarios)
         {
             usuarios.Add(new Usuario("aaa", "aaa", empleados[0]));
             usuarios.Add(new Usuario("bbb", "bbb", empleados[1]));
             usuarios.Add(new Usuario("ccc", "ccc", empleados[2]));
         }
-
+        /// <summary>
+        /// Obtiene la lista de usuarios
+        /// </summary>
+        /// <returns>Lista de usuarios</returns>
         public static List<Usuario> ObtenerUsuarios()
         {
             return usuarios;
         }
-
+        /// <summary>
+        /// Guarda un usuario en la lista
+        /// </summary>
+        /// <param name="usuario"></param>
         public static void GuardarUsuario(Usuario usuario)
         {
             usuarios.Add(usuario);
@@ -80,6 +103,10 @@ namespace Entidades
         #endregion
 
         #region Clientes
+        /// <summary>
+        /// Realiza un hardcodeo de la lista de clientes
+        /// </summary>
+        /// <param name="clientes"></param>
         private static void HardcodearClientes(List<Cliente> clientes)
         {
             clientes.Add(new Cliente("Maria", "Vazquez", 22, 42893233, TiposDeBebida.Fernet));
@@ -92,17 +119,26 @@ namespace Entidades
             clientes.Add(new Cliente("Clara", "Comas", 48, 3328481, TiposDeBebida.Gin));
             clientes.Add(new Cliente("Carlos", "Torres", 31, 36068250, TiposDeBebida.Vermu));
         }
-
+        /// <summary>
+        /// Obtiene la lista de clientes
+        /// </summary>
+        /// <returns>Lista de clientes</returns>
         public static List<Cliente> ObtenerClientes()
         {
             return clientes;
         }
-
+        /// <summary>
+        /// Guarda un cliente en la lista
+        /// </summary>
+        /// <param name="cliente"></param>
         public static void GuardarCliente(Cliente cliente)
         {
             clientes.Add(cliente);
         }
-
+        /// <summary>
+        /// Elimina un cliente de la lista
+        /// </summary>
+        /// <param name="cliente"></param>
         public static void EliminarCliente(Cliente cliente)
         {
             clientes.Remove(cliente);
@@ -111,6 +147,10 @@ namespace Entidades
         #endregion
 
         #region Bebidas
+        /// <summary>
+        /// Realiza un hardcodeo de la lista de bebidas
+        /// </summary>
+        /// <param name="bebidas"></param>
         private static void HardcodearBebidas(List<Bebidas> bebidas)
         {
             bebidas.Add(new Bebidas("Malbec", 14, 900, TiposDeBebida.Vino, 25));
@@ -130,17 +170,26 @@ namespace Entidades
             bebidas.Add(new Bebidas("Bacardi", 40, 3000, TiposDeBebida.Licor, 25));
             bebidas.Add(new Bebidas("Jagermeister", 40, 11000, TiposDeBebida.Licor, 25));
         }
-
+        /// <summary>
+        /// Obtiene la lista de bebidas
+        /// </summary>
+        /// <returns>lista de bebidas</returns>
         public static List<Bebidas> ObtenerBebidas()
         {
             return bebidas;
         }
-
+        /// <summary>
+        /// Guarda una bebida en la lista
+        /// </summary>
+        /// <param name="bebida"></param>
         public static void GuardarBebidas(Bebidas bebida)
         {
             bebidas.Add(bebida);
         }
-
+        /// <summary>
+        /// Elimina una bebida de la lista
+        /// </summary>
+        /// <param name="bebida"></param>
         public static void EliminarBebida(Bebidas bebida)
         {
             bebidas.Remove(bebida);
@@ -148,7 +197,10 @@ namespace Entidades
         #endregion
 
         #region Ventas
-
+        /// <summary>
+        /// Realiza el hardcodeo de la lista de ventas
+        /// </summary>
+        /// <param name="ventas"></param>
         private static void HardcodearVentas(List<Ventas> ventas)
         {
             ventas.Add(new Ventas(MetodoDePago.MercadoPago, clientes[0].Dni, bebidas[0].Id, empleados[3].Id, bebidas[0].Precio, new DateTime(2023, 5, 9)));
@@ -157,17 +209,26 @@ namespace Entidades
             ventas.Add(new Ventas(MetodoDePago.Debito, clientes[2].Dni, bebidas[5].Id, empleados[1].Id, bebidas[5].Precio, new DateTime(2023, 5, 11)));
 
         }
-
+        /// <summary>
+        /// Obtiene la lista de ventas
+        /// </summary>
+        /// <returns></returns>
         public static List<Ventas> ObtenerVentas()
         {
             return ventas;
         }
-
+        /// <summary>
+        /// Guarda una venta en la lista
+        /// </summary>
+        /// <param name="venta"></param>
         public static void GuardarVentas(Ventas venta)
         {
             ventas.Add(venta);
         }
-
+        /// <summary>
+        /// Elimina una venta de la lista
+        /// </summary>
+        /// <param name="venta"></param>
         public static void EliminarVenta(Ventas venta)
         {
             ventas.Remove(venta);

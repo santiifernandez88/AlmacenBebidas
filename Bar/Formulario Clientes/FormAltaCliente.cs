@@ -29,6 +29,7 @@ namespace Bar.Formulario_Clientes
             cmbBebidaFavorita.Items.Add(TiposDeBebida.Cerveza);
             cmbBebidaFavorita.Items.Add(TiposDeBebida.Vermu);
             cmbBebidaFavorita.Items.Add(TiposDeBebida.Whiskey);
+            cmbBebidaFavorita.Items.Add(TiposDeBebida.Fernet);
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)

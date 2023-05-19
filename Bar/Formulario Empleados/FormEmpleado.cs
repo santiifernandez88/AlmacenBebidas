@@ -95,9 +95,13 @@ namespace Bar.Formulario_Empleados
                 int idAModificar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[0].Value;
                 Empleado empleadoAModificar = Controlador.TraerEmpleadoId(idAModificar);
                 FormModificarEmpleado formModificar = new FormModificarEmpleado(empleadoAModificar);
-                formModificar.Show();
+                DialogResult dg2 = formModificar.ShowDialog();
+                if(dg2 == DialogResult.OK)
+                {
+                    ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+                }
             }
-            ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+            
         }
 
 

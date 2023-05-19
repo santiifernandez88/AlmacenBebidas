@@ -9,13 +9,21 @@ namespace Entidades
     {
          
         #region Clientes
+        /// <summary>
+        /// Obtiene todos los clientes y los retorna
+        /// </summary>
+        /// <returns>lista de clientes</returns>
         public static List<Cliente> ObtenerTodosClientes()
         {
             var listaClientes = BaseDeDatos.ObtenerClientes();
 
             return listaClientes;
         }
-
+        /// <summary>
+        /// Valida si se puede agregar el cliente en la lista y se agrega
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns>true o false dependiendo de si se pudo agregar un cliente o no</returns>
         public static bool AgregarCliente(Cliente cliente)
         {
             bool añadido = false;
@@ -28,7 +36,11 @@ namespace Entidades
 
             return añadido;
         }
-
+        /// <summary>
+        /// Recorre la lista de empleados y busca encontrar dni igual al de algun cliente en la lista y lo elimina 
+        /// </summary>
+        /// <param name="dniAEliminar"></param>
+        /// <returns>retorna true o false dependiendo si se pudo eliminar o no</returns>
         public static bool BorrarCliente(int dniAEliminar)
         {
             bool eliminado = false;
@@ -45,7 +57,15 @@ namespace Entidades
 
             return eliminado;
         }
-
+        /// <summary>
+        /// Crea un cliente y lo agrega a la lista
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="edadStr"></param>
+        /// <param name="dniStr"></param>
+        /// <param name="tipoBebidaIndex"></param>
+        /// <returns>true o false dependiendo si se pudo crear y agregar en la lista</returns>
         public static bool CrearCliente(string nombre, string apellido, string edadStr, string dniStr, int tipoBebidaIndex)
         {
             bool validado = false;
@@ -63,7 +83,11 @@ namespace Entidades
             }
             return validado;
         }
-
+        /// <summary>
+        /// Realiza una validacion para que no haya clientes iguales en la lista
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns>true o false dependiendo si se encontro un cliente igual o no</returns>
         public static bool ValidarClienteEnLista(Cliente cliente)
         {
             bool noEncontrado = true;
@@ -79,7 +103,11 @@ namespace Entidades
 
             return noEncontrado;
         }
-
+        /// <summary>
+        /// Realiza una busqueda de cliente y si se encuentra lo retorna
+        /// </summary>
+        /// <param name="dniAModificar"></param>
+        /// <returns>cliente a retornar</returns>
         public static Cliente TraerClienteDni(int dniAModificar)
         {
             Cliente clienteARetornar = null;
@@ -94,7 +122,16 @@ namespace Entidades
 
             return clienteARetornar;
         }
-
+        /// <summary>
+        /// Modifica un cliente y valida que no sea igual a otro de la lista
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="edadStr"></param>
+        /// <param name="dniStr"></param>
+        /// <param name="tipoIndex"></param>
+        /// <returns>true o false si se pudo modificar</returns>
         public static bool ModificarCliente(Cliente cliente, string nombre, string apellido, string edadStr, string dniStr, int tipoIndex)
         {
             bool modificado = false;
@@ -124,6 +161,10 @@ namespace Entidades
         #endregion
 
         #region Empleados
+        /// <summary>
+        /// Obtiene la lista de empleados
+        /// </summary>
+        /// <returns>lista de empleados</returns>
         public static List<Empleado> ObtenerTodosEmpleados()
         {
 
@@ -132,7 +173,11 @@ namespace Entidades
             return listaEmpleados;
 
         }
-
+        /// <summary>
+        /// Agrega un empleado que no este en lista
+        /// </summary>
+        /// <param name="empleado"></param>
+        /// <returns>true o false si se pudo agregar</returns>
         public static bool AgregarEmpleado(Empleado empleado)
         {
             bool añadido = false;
@@ -145,7 +190,11 @@ namespace Entidades
 
             return añadido;
         }
-
+        /// <summary>
+        /// Elimina un empleado de la lista 
+        /// </summary>
+        /// <param name="IdAEliminar"></param>
+        /// <returns>true o false si se pudo eliminar</returns>
         public static bool BorrarEmpleado(int IdAEliminar)
         {
             bool eliminado = false;
@@ -162,13 +211,17 @@ namespace Entidades
 
             return eliminado;
         }
-
-        public static Empleado TraerEmpleadoId(int index)
+        /// <summary>
+        /// Obtiene un empleado mediante una id pasada por parametro y lo retorna
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>empleado a retornar</returns>
+        public static Empleado TraerEmpleadoId(int id)
         {
             Empleado empleadoRetornar = null;
             foreach (Empleado emp in ObtenerTodosEmpleados())
             {
-                if (emp.Id == index)
+                if (emp.Id == id)
                 {
                     empleadoRetornar = emp;
                 }
@@ -176,7 +229,17 @@ namespace Entidades
 
             return empleadoRetornar;
         }
-
+        /// <summary>
+        /// Modifica un empleado
+        /// </summary>
+        /// <param name="empleado"></param>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="edadStr"></param>
+        /// <param name="dniStr"></param>
+        /// <param name="sueldoStr"></param>
+        /// <param name="puestoIndex"></param>
+        /// <returns>true o false si se pudo modificar</returns>
         public static bool ModificarEmpleado(Empleado empleado, string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, int puestoIndex)
         {
             bool modificado = false;
@@ -206,7 +269,11 @@ namespace Entidades
 
             return modificado;
         }
-
+        /// <summary>
+        /// Valida si un empleado ya existe o no en la lista
+        /// </summary>
+        /// <param name="empleado"></param>
+        /// <returns>true o false si se encuentra o no se encuentra</returns>
         private static bool ValidarEmpleadoEnLista(Empleado empleado)
         {
             bool noEncontrado = true;
@@ -221,7 +288,18 @@ namespace Entidades
 
             return noEncontrado;
         }
-
+        /// <summary>
+        /// Crea un empleado y valida que no este en la lsita
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="edadStr"></param>
+        /// <param name="dniStr"></param>
+        /// <param name="sueldoStr"></param>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="contraseña"></param>
+        /// <param name="puestoIndex"></param>
+        /// <returns>true o false si se pudo crear y agregar a la lista</returns>
         public static bool CrearEmpleado(string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, string nombreUsuario, string contraseña, int puestoIndex)
         {
             bool result = false;
@@ -244,7 +322,11 @@ namespace Entidades
 
             return result;
         }
-
+        /// <summary>
+        /// Valida que la id pasada por parametro sea de un empleado en especifico
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True o false si esa id pasada por parametro es de un empleado</returns>
         public static bool ValidarIdEmpleado(int id)
         {
             bool validado = false;

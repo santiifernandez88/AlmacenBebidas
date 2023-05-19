@@ -26,14 +26,15 @@ namespace Bar.Formulario_Clientes
             txtApellido.Text = cliente.Apellido;
             txtDni.Text = cliente.Dni.ToString();
             txtEdad.Text = cliente.Edad.ToString();
-            cmbPuesto.SelectedIndex = (int)cliente.BebidaFavorita;
+            cmbBebidaFavorita.SelectedIndex = (int)cliente.BebidaFavorita;
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.ModificarCliente(cliente, base.txtNombre.Text, base.txtApellido.Text, base.txtEdad.Text, base.txtDni.Text, (int)base.cmbPuesto.SelectedIndex))
+            if (Controlador.ModificarCliente(cliente, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, (int)cmbBebidaFavorita.SelectedIndex))
             {
                 MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Hide();
             }
             else

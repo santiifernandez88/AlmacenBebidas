@@ -88,9 +88,12 @@ namespace Bar.Formulario_Clientes
                 int dniAModificar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[4].Value;             
                 Cliente clienteAModificar = Controlador.TraerClienteDni(dniAModificar);
                 FormModificarCliente formModificar = new FormModificarCliente(clienteAModificar);
-                formModificar.Show();     
-            }
-            ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+                DialogResult dg2 = formModificar.ShowDialog();   
+                if(dg2 == DialogResult.OK) 
+                {
+                    ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+                }
+            }           
         }
     }
 }

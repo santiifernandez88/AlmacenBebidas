@@ -25,20 +25,25 @@ namespace Bar.Formulario_Empleados
             txtContraseña.Visible = false;
             txtNombreUsuario.Visible = false;
             label5.Visible = false;
+            base.cmbPuesto.Visible = false;
             lblContraseña.Visible = false;
             lblNombreUsuario.Visible = false;
             lblAlta.Text = "Modificar empleado";
             txtApellido.Text = empleado.Apellido;
             txtNombre.Text = empleado.Nombre;
             txtEdad.Text = empleado.Edad.ToString();
-            txtDni.Text = empleado.Dni.ToString(); 
+            txtDni.Text = empleado.Dni.ToString();
             txtSueldo.Text = empleado.Sueldo.ToString();
-            cmbPuesto.SelectedIndex = (int)empleado.Puesto;
+            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Jefe);
+            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Encargado);
+            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Vendedor);
+            cmbPuestoTrabajo.SelectedIndex = (int)empleado.Puesto;
+            
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.ModificarEmpleado(empleado, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, (int)cmbPuesto.SelectedIndex))
+            if (Controlador.ModificarEmpleado(empleado, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, (int)cmbPuestoTrabajo.SelectedIndex))
             {
                 MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
