@@ -148,7 +148,6 @@
             picAutoLogeo.SizeMode = PictureBoxSizeMode.StretchImage;
             picAutoLogeo.TabIndex = 7;
             picAutoLogeo.TabStop = false;
-            picAutoLogeo.Click += picAutoLogeo_Click;
             // 
             // Login
             // 

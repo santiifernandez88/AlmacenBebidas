@@ -1,5 +1,6 @@
 ﻿using Bar.Formulario_Ventas;
 using Entidades;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +48,7 @@ namespace Bar
             dtgVentas.ReadOnly = true;
         }
 
-        public void ActualizarDatagrid(List<Ventas> ventas)
+        public void ActualizarDatagrid(List<Venta> ventas)
         {
             dtgVentas.DataSource = null;
             dtgVentas.DataSource = ventas;

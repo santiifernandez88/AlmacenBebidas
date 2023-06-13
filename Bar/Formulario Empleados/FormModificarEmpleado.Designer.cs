@@ -1,4 +1,6 @@
-﻿namespace Bar.Formulario_Empleados
+﻿using Entidades.Empleados;
+
+namespace Bar.Formulario_Empleados
 {
     partial class FormModificarEmpleado
     {
@@ -54,7 +56,7 @@
             // 
             // cmbPuesto
             // 
-            cmbPuesto.Items.AddRange(new object[] { Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor, Entidades.PuestosDeTrabajo.Jefe, Entidades.PuestosDeTrabajo.Encargado, Entidades.PuestosDeTrabajo.Vendedor });
+            cmbPuesto.Items.AddRange(new object[] { PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor });
             cmbPuesto.Location = new Point(390, 461);
             // 
             // btnCancelar

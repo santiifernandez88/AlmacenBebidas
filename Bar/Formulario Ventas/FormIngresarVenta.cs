@@ -1,4 +1,6 @@
 ﻿using Entidades;
+using Entidades.Clientes;
+using Entidades.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

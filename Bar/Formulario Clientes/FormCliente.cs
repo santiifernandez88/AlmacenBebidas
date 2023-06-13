@@ -1,5 +1,7 @@
 ﻿using Bar.Formulario_Empleados;
 using Entidades;
+using Entidades.Clientes;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

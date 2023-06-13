@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades.Bebidas;
+using Entidades.Clientes;
+using Entidades.Empleados;
+using Entidades.Ventas;
 
 namespace Entidades
 {
@@ -11,8 +15,8 @@ namespace Entidades
         private static List<Empleado> empleados;
         private static List<Cliente> clientes;
         private static List<Usuario> usuarios;
-        private static List<Bebidas> bebidas;
-        private static List<Ventas> ventas;
+        private static List<BebidaAlcoholica> bebidas;
+        private static List<Venta> ventas;
 
         
 
@@ -22,8 +26,8 @@ namespace Entidades
             empleados = new List<Empleado>();
             clientes = new List<Cliente>();
             usuarios = new List<Usuario>();
-            bebidas = new List<Bebidas>();
-            ventas = new List<Ventas>();
+            bebidas = new List<BebidaAlcoholica>();
+            ventas = new List<Venta>();
             HarcodearEmpleados(empleados);
             HardcodearUsuarios(usuarios);
             HardcodearBebidas(bebidas);
@@ -151,30 +155,30 @@ namespace Entidades
         /// Realiza un hardcodeo de la lista de bebidas
         /// </summary>
         /// <param name="bebidas"></param>
-        private static void HardcodearBebidas(List<Bebidas> bebidas)
+        private static void HardcodearBebidas(List<BebidaAlcoholica> bebidas)
         {
-            bebidas.Add(new Bebidas("Malbec", 14, 900, TiposDeBebida.Vino, 25));
-            bebidas.Add(new Bebidas("Malbec", 14, 1400, TiposDeBebida.Vino, 25));
-            bebidas.Add(new Bebidas("Ruttini", 14, 30000, TiposDeBebida.Vino, 25));
-            bebidas.Add(new Bebidas("Branca", 40, 2500, TiposDeBebida.Fernet, 25));
-            bebidas.Add(new Bebidas("1882", 40, 1800, TiposDeBebida.Fernet, 25));
-            bebidas.Add(new Bebidas("Gordon", 44, 2000, TiposDeBebida.Gin, 25));
-            bebidas.Add(new Bebidas("Brahma", 6, 1500, TiposDeBebida.Cerveza, 25));
-            bebidas.Add(new Bebidas("Patagonia", 6, 2000, TiposDeBebida.Cerveza, 25));
-            bebidas.Add(new Bebidas("Amargo Obrero", 14, 600, TiposDeBebida.Vermu, 25));
-            bebidas.Add(new Bebidas("Cinzano", 14, 900, TiposDeBebida.Vermu, 25));
-            bebidas.Add(new Bebidas("Smirnoff", 37, 1600, TiposDeBebida.Vodka, 25));
-            bebidas.Add(new Bebidas("Sky", 37, 1700, TiposDeBebida.Vodka, 25));
-            bebidas.Add(new Bebidas("Jameson", 40, 4500, TiposDeBebida.Whiskey, 25));
-            bebidas.Add(new Bebidas("Jack Daniels", 43, 5000, TiposDeBebida.Whiskey, 25));
-            bebidas.Add(new Bebidas("Bacardi", 40, 3000, TiposDeBebida.Licor, 25));
-            bebidas.Add(new Bebidas("Jagermeister", 40, 11000, TiposDeBebida.Licor, 25));
+            bebidas.Add(new BebidaAlcoholica("Malbec", 14, 900, TiposDeBebida.Vino, 25));
+            bebidas.Add(new BebidaAlcoholica("Malbec", 14, 1400, TiposDeBebida.Vino, 25));
+            bebidas.Add(new BebidaAlcoholica("Ruttini", 14, 30000, TiposDeBebida.Vino, 25));
+            bebidas.Add(new BebidaAlcoholica("Branca", 40, 2500, TiposDeBebida.Fernet, 25));
+            bebidas.Add(new BebidaAlcoholica("1882", 40, 1800, TiposDeBebida.Fernet, 25));
+            bebidas.Add(new BebidaAlcoholica("Gordon", 44, 2000, TiposDeBebida.Gin, 25));
+            bebidas.Add(new BebidaAlcoholica("Brahma", 6, 1500, TiposDeBebida.Cerveza, 25));
+            bebidas.Add(new BebidaAlcoholica("Patagonia", 6, 2000, TiposDeBebida.Cerveza, 25));
+            bebidas.Add(new BebidaAlcoholica("Amargo Obrero", 14, 600, TiposDeBebida.Vermu, 25));
+            bebidas.Add(new BebidaAlcoholica("Cinzano", 14, 900, TiposDeBebida.Vermu, 25));
+            bebidas.Add(new BebidaAlcoholica("Smirnoff", 37, 1600, TiposDeBebida.Vodka, 25));
+            bebidas.Add(new BebidaAlcoholica("Sky", 37, 1700, TiposDeBebida.Vodka, 25));
+            bebidas.Add(new BebidaAlcoholica("Jameson", 40, 4500, TiposDeBebida.Whiskey, 25));
+            bebidas.Add(new BebidaAlcoholica("Jack Daniels", 43, 5000, TiposDeBebida.Whiskey, 25));
+            bebidas.Add(new BebidaAlcoholica("Bacardi", 40, 3000, TiposDeBebida.Licor, 25));
+            bebidas.Add(new BebidaAlcoholica("Jagermeister", 40, 11000, TiposDeBebida.Licor, 25));
         }
         /// <summary>
         /// Obtiene la lista de bebidas
         /// </summary>
         /// <returns>lista de bebidas</returns>
-        public static List<Bebidas> ObtenerBebidas()
+        public static List<BebidaAlcoholica> ObtenerBebidas()
         {
             return bebidas;
         }
@@ -182,7 +186,7 @@ namespace Entidades
         /// Guarda una bebida en la lista
         /// </summary>
         /// <param name="bebida"></param>
-        public static void GuardarBebidas(Bebidas bebida)
+        public static void GuardarBebidas(BebidaAlcoholica bebida)
         {
             bebidas.Add(bebida);
         }
@@ -190,7 +194,7 @@ namespace Entidades
         /// Elimina una bebida de la lista
         /// </summary>
         /// <param name="bebida"></param>
-        public static void EliminarBebida(Bebidas bebida)
+        public static void EliminarBebida(BebidaAlcoholica bebida)
         {
             bebidas.Remove(bebida);
         }
@@ -201,19 +205,19 @@ namespace Entidades
         /// Realiza el hardcodeo de la lista de ventas
         /// </summary>
         /// <param name="ventas"></param>
-        private static void HardcodearVentas(List<Ventas> ventas)
+        private static void HardcodearVentas(List<Venta> ventas)
         {
-            ventas.Add(new Ventas(MetodoDePago.MercadoPago, clientes[0].Dni, bebidas[0].Id, empleados[3].Id, bebidas[0].Precio, new DateTime(2023, 5, 9)));
-            ventas.Add(new Ventas(MetodoDePago.Efectivo, clientes[1].Dni, bebidas[0].Id, empleados[3].Id, bebidas[0].Precio, new DateTime(2023, 5, 10)));
-            ventas.Add(new Ventas(MetodoDePago.MercadoPago, clientes[3].Dni, bebidas[3].Id, empleados[2].Id, bebidas[3].Precio, new DateTime(2023, 5, 11)));
-            ventas.Add(new Ventas(MetodoDePago.Debito, clientes[2].Dni, bebidas[5].Id, empleados[1].Id, bebidas[5].Precio, new DateTime(2023, 5, 11)));
+            ventas.Add(new Venta(MetodoDePago.MercadoPago, clientes[0].Dni, bebidas[0].Id, empleados[3].Id, bebidas[0].Precio, new DateTime(2023, 5, 9)));
+            ventas.Add(new Venta(MetodoDePago.Efectivo, clientes[1].Dni, bebidas[0].Id, empleados[3].Id, bebidas[0].Precio, new DateTime(2023, 5, 10)));
+            ventas.Add(new Venta(MetodoDePago.MercadoPago, clientes[3].Dni, bebidas[3].Id, empleados[2].Id, bebidas[3].Precio, new DateTime(2023, 5, 11)));
+            ventas.Add(new Venta(MetodoDePago.Debito, clientes[2].Dni, bebidas[5].Id, empleados[1].Id, bebidas[5].Precio, new DateTime(2023, 5, 11)));
 
         }
         /// <summary>
         /// Obtiene la lista de ventas
         /// </summary>
         /// <returns></returns>
-        public static List<Ventas> ObtenerVentas()
+        public static List<Venta> ObtenerVentas()
         {
             return ventas;
         }
@@ -221,7 +225,7 @@ namespace Entidades
         /// Guarda una venta en la lista
         /// </summary>
         /// <param name="venta"></param>
-        public static void GuardarVentas(Ventas venta)
+        public static void GuardarVentas(Venta venta)
         {
             ventas.Add(venta);
         }
@@ -229,7 +233,7 @@ namespace Entidades
         /// Elimina una venta de la lista
         /// </summary>
         /// <param name="venta"></param>
-        public static void EliminarVenta(Ventas venta)
+        public static void EliminarVenta(Venta venta)
         {
             ventas.Remove(venta);
         }

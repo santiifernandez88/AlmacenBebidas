@@ -2,6 +2,10 @@
 using System.Diagnostics.SymbolStore;
 using System.Net;
 using System.Text;
+using Entidades.Bebidas;
+using Entidades.Clientes;
+using Entidades.Empleados;
+using Entidades.Ventas;
 
 namespace Entidades
 {
@@ -83,6 +87,7 @@ namespace Entidades
             }
             return validado;
         }
+             
         /// <summary>
         /// Realiza una validacion para que no haya clientes iguales en la lista
         /// </summary>
@@ -178,7 +183,7 @@ namespace Entidades
         /// </summary>
         /// <param name="empleado"></param>
         /// <returns>true o false si se pudo agregar</returns>
-        public static bool AgregarEmpleado(Empleado empleado)
+       /* public static bool AgregarEmpleado(Empleado empleado)
         {
             bool añadido = false;
 
@@ -189,13 +194,13 @@ namespace Entidades
             }
 
             return añadido;
-        }
+        }*/
         /// <summary>
         /// Elimina un empleado de la lista 
         /// </summary>
         /// <param name="IdAEliminar"></param>
         /// <returns>true o false si se pudo eliminar</returns>
-        public static bool BorrarEmpleado(int IdAEliminar)
+        /*public static bool BorrarEmpleado(int IdAEliminar)
         {
             bool eliminado = false;
 
@@ -210,7 +215,7 @@ namespace Entidades
             }
 
             return eliminado;
-        }
+        }*/
         /// <summary>
         /// Obtiene un empleado mediante una id pasada por parametro y lo retorna
         /// </summary>
@@ -247,7 +252,6 @@ namespace Entidades
             int dni;
             float sueldo;
             PuestosDeTrabajo puesto = (PuestosDeTrabajo)puestoIndex;
-
 
             if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && int.TryParse(edadStr, out edad)
                 && int.TryParse(dniStr, out dni) && float.TryParse(sueldoStr, out sueldo))
@@ -379,14 +383,14 @@ namespace Entidades
 
         #region Bebidas
 
-        public static List<Bebidas> ObtenerTodasBebidas()
+        public static List<BebidaAlcoholica> ObtenerTodasBebidas()
         {
             var listaBebidas = BaseDeDatos.ObtenerBebidas();
 
             return listaBebidas;
         }
 
-        public static void AgregarBebida(Bebidas bebidas)
+        public static void AgregarBebida(BebidaAlcoholica bebidas)
         {
             BaseDeDatos.GuardarBebidas(bebidas);
         }
@@ -395,7 +399,7 @@ namespace Entidades
         {
             bool eliminado = false;
 
-            foreach (Bebidas b in ObtenerTodasBebidas())
+            foreach (BebidaAlcoholica b in ObtenerTodasBebidas())
             {
                 if (b.Id == idAEliminar)
                 {
@@ -410,7 +414,7 @@ namespace Entidades
 
         public static void RellenarStock()
         {
-            foreach (Bebidas b in ObtenerTodasBebidas())
+            foreach (BebidaAlcoholica b in ObtenerTodasBebidas())
             {
                 if (b.Stock != 25)
                 {
@@ -429,7 +433,7 @@ namespace Entidades
 
             if (!string.IsNullOrEmpty(marca) && float.TryParse(gradoAlcStr, out gradoAlc) && float.TryParse(precioStr, out precio) && int.TryParse(stockStr, out stock))
             {
-                Bebidas bebidaNueva = new Bebidas(marca, gradoAlc, precio, tipoDeBebida, stock);
+                BebidaAlcoholica bebidaNueva = new BebidaAlcoholica(marca, gradoAlc, precio, tipoDeBebida, stock);
                 AgregarBebida(bebidaNueva);
                 validado = true;
             }
@@ -440,7 +444,7 @@ namespace Entidades
         public static float BuscarPrecioPorId(int id)
         {
             float precioRetornado = 0;
-            foreach (Bebidas b in ObtenerTodasBebidas())
+            foreach (BebidaAlcoholica b in ObtenerTodasBebidas())
             {
                 if (b.Id == id)
                 {
@@ -453,7 +457,7 @@ namespace Entidades
 
         public static void DescontarStock(int idBebida)
         {
-            foreach(Bebidas b in ObtenerTodasBebidas())
+            foreach(BebidaAlcoholica b in ObtenerTodasBebidas())
             {
                 if(b.Id == idBebida)
                 {
@@ -466,7 +470,7 @@ namespace Entidades
         {
             bool validado = false;
 
-            foreach(Bebidas b in ObtenerTodasBebidas())
+            foreach(BebidaAlcoholica b in ObtenerTodasBebidas())
             {
                 if(id <= b.Id)
                 {
@@ -481,7 +485,7 @@ namespace Entidades
 
         #region Ventas
 
-        public static List<Ventas> ObtenerTodasVentas()
+        public static List<Venta> ObtenerTodasVentas()
         {
             var listaVentas = BaseDeDatos.ObtenerVentas();
 
@@ -492,7 +496,7 @@ namespace Entidades
         {
             bool eliminado = false;
 
-            foreach (Ventas v in ObtenerTodasVentas())
+            foreach (Venta v in ObtenerTodasVentas())
             {
                 if (v.Id == idAEliminar)
                 {
@@ -509,7 +513,7 @@ namespace Entidades
         {
             float acumulador = 0;
 
-            foreach (Ventas v in ObtenerTodasVentas())
+            foreach (Venta v in ObtenerTodasVentas())
             {
                 acumulador += v.Ganancias;
             }
@@ -517,7 +521,7 @@ namespace Entidades
             return acumulador;
         }
 
-        public static void AgregarVenta(Ventas venta)
+        public static void AgregarVenta(Venta venta)
         {
             BaseDeDatos.GuardarVentas(venta);
         }
@@ -535,7 +539,7 @@ namespace Entidades
                 if(ValidarIdBebida(idBebida) && ValidarIdEmpleado(idEmpleado))
                 {
                     ganancias = BuscarPrecioPorId(idBebida);
-                    Ventas ventaNueva = new Ventas(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
+                    Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
                     AgregarVenta(ventaNueva);
                     DescontarStock(idBebida);
                     validado = true;

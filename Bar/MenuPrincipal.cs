@@ -2,6 +2,7 @@
 using Bar.Formulario_Empleados;
 using Bar.Properties;
 using Entidades;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

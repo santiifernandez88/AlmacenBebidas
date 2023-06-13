@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Clientes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

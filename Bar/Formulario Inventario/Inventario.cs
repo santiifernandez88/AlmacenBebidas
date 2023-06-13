@@ -1,6 +1,8 @@
 ﻿using Bar.Formulario_Empleados;
 using Bar.Formulario_Inventario;
 using Entidades;
+using Entidades.Bebidas;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +48,7 @@ namespace Bar
             btnModEmp.Text = "Rellenar stock";
         }
 
-        private void ActualizarDatagrid(List<Bebidas> bebidas)
+        private void ActualizarDatagrid(List<BebidaAlcoholica> bebidas)
         {
             // ojo que si la lista esta vacia rompe
             dtgEmpleado.DataSource = null;

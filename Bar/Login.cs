@@ -30,11 +30,5 @@ namespace Bar
         {
             Application.Exit();
         }
-
-        private void picAutoLogeo_Click(object sender, EventArgs e)
-        {
-            txt_NombreUsuario.Text = "aaa";
-            txt_Contraseña.Text = "aaa";
-        }
     }
 }

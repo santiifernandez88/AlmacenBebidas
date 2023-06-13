@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades.Bebidas;
 
-namespace Entidades
+namespace Entidades.Clientes
 {
     public class Cliente : Persona
     {
         private TiposDeBebida bebidaFavorita;
 
-        public Cliente(string nombre, string apellido, int edad, int dni, TiposDeBebida bebidaFavorita): base(nombre, apellido, edad, dni)
+        public Cliente(string nombre, string apellido, int edad, int dni, TiposDeBebida bebidaFavorita) : base(nombre, apellido, edad, dni)
         {
             this.bebidaFavorita = bebidaFavorita;
         }
@@ -31,7 +32,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(base.ToString() + " | " + this.bebidaFavorita);
+            sb.Append(base.ToString() + " | " + bebidaFavorita);
 
             return sb.ToString();
         }

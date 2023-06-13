@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

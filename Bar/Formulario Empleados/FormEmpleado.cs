@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,12 +97,12 @@ namespace Bar.Formulario_Empleados
                 Empleado empleadoAModificar = Controlador.TraerEmpleadoId(idAModificar);
                 FormModificarEmpleado formModificar = new FormModificarEmpleado(empleadoAModificar);
                 DialogResult dg2 = formModificar.ShowDialog();
-                if(dg2 == DialogResult.OK)
+                if (dg2 == DialogResult.OK)
                 {
                     ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
                 }
             }
-            
+
         }
 
 
