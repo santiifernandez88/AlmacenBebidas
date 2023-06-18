@@ -17,6 +17,8 @@ namespace Bar
 {
     public partial class Inventario : FormEmpleado
     {
+        Controlador controlador = new Controlador();
+
         protected override CreateParams CreateParams
         {
             get
@@ -43,7 +45,7 @@ namespace Bar
             {
                 btnBajaEmp.Visible = true;
             }
-            ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+            ActualizarDatagrid(controlador.ObtenerTodasBebidasAlcoholicas());
             dtgEmpleado.ReadOnly = true;
             btnModEmp.Text = "Rellenar stock";
         }
@@ -67,7 +69,7 @@ namespace Bar
             DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar esta bebida?", "Eliminar bebida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
             {
-                if (Controlador.BorrarBebida(idAEliminar))
+                if (controlador.BajaBebidaAlcoholica(idAEliminar))
                 {
                     MessageBox.Show("Se elimino correctamente al empleado");
                     
@@ -76,14 +78,15 @@ namespace Bar
                 {
                     MessageBox.Show("Error, no se pudo eliminar correctamente la bebida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+                ActualizarDatagrid(controlador.ObtenerTodasBebidasAlcoholicas());
             }
         }
 
         public override void btnModEmp_Click(object sender, EventArgs e)
         {
-            Controlador.RellenarStock();
-            ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+            AdministradorBebidaAlcoholica administrador = new AdministradorBebidaAlcoholica();
+            administrador.RellenarStock();
+            ActualizarDatagrid(controlador.ObtenerTodasBebidasAlcoholicas());
         }
 
         public override void btnAltaEmp_Click(object sender, EventArgs e)
@@ -92,7 +95,7 @@ namespace Bar
             DialogResult dg = formAltaBebidas.ShowDialog();
             if(dg == DialogResult.OK) 
             {
-                ActualizarDatagrid(Controlador.ObtenerTodasBebidas());
+                ActualizarDatagrid(controlador.ObtenerTodasBebidasAlcoholicas());
             }        
         }
     }

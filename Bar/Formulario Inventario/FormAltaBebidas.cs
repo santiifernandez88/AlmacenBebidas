@@ -15,6 +15,7 @@ namespace Bar.Formulario_Inventario
 {
     public partial class FormAltaBebidas : FormAltaEmpleado
     {
+        Controlador controlador = new Controlador();
         public FormAltaBebidas()
         {
             InitializeComponent();
@@ -22,20 +23,15 @@ namespace Bar.Formulario_Inventario
 
         private void FormAltaBebidas_Load(object sender, EventArgs e)
         {
-            cmbTipoBebida.Items.Add(TiposDeBebida.Licor);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Gin);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Vino);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Fernet);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Cerveza);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Whiskey);
-            cmbTipoBebida.Items.Add(TiposDeBebida.Vodka);
+            foreach (var tipo in Enum.GetValues(typeof(TiposBebidasAlcoholicas)))
+            {
+                cmbPuesto.Items.Add(tipo);
+            }
         }
-
-
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.CrearBebida(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbTipoBebida.SelectedIndex))
+            if (controlador.AltaBebidaAlcoholica(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtMLitros.Text, txtDni.Text, txtDescripcion.Text, cmbTipoBebida.SelectedIndex))
             {
                 MessageBox.Show("Se pudo agregar la bebida al inventario.");
                 this.DialogResult = DialogResult.OK;

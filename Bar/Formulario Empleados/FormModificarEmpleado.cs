@@ -14,6 +14,7 @@ namespace Bar.Formulario_Empleados
 {
     public partial class FormModificarEmpleado : FormAltaEmpleado
     {
+        Controlador controlador = new Controlador();
         Empleado empleado;
         public FormModificarEmpleado(Empleado empleado)
         {
@@ -35,16 +36,17 @@ namespace Bar.Formulario_Empleados
             txtEdad.Text = empleado.Edad.ToString();
             txtDni.Text = empleado.Dni.ToString();
             txtSueldo.Text = empleado.Sueldo.ToString();
-            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Jefe);
-            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Encargado);
-            cmbPuestoTrabajo.Items.Add(PuestosDeTrabajo.Vendedor);
+            foreach (var puesto in Enum.GetValues(typeof(PuestosDeTrabajo)))
+            {
+                cmbPuesto.Items.Add(puesto);
+            }
             cmbPuestoTrabajo.SelectedIndex = (int)empleado.Puesto;
             
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.ModificarEmpleado(empleado, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, (int)cmbPuestoTrabajo.SelectedIndex))
+            if (controlador.ModificarEmpleado(empleado, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, (int)cmbPuestoTrabajo.SelectedIndex))
             {
                 MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

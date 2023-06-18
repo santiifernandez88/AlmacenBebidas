@@ -6,43 +6,38 @@ using System.Threading.Tasks;
 
 namespace Entidades.Bebidas
 {
-    public enum TiposDeBebida
+    public enum TiposBebidasAlcoholicas
     {
         Vino,
         Gin,
         Vodka,
         Fernet,
         Cerveza,
-        Licor,
         Whiskey,
-        Vermu
+        Licor
     }
-    public abstract class BebidaAlcoholica : Bebida
+    public class BebidaAlcoholica : Bebida
     {
         private float gradoAlcoholico;
-        private float litros;
-
+        private TiposBebidasAlcoholicas tipo;
 
         public static int siguienteId = 1;
 
-        public BebidaAlcoholica(string marca, int stock, float precio, string descripcion, float gradoAlcoholico) : base(marca, precio, stock, descripcion)
+        public BebidaAlcoholica(string marca, int stock, float precio, int mLitros, float gradoAlcoholico, string descripcion, TiposBebidasAlcoholicas tipo) : base(marca, precio, stock, mLitros, descripcion)
         {
-
             this.gradoAlcoholico = gradoAlcoholico;
-
+            this.tipo = tipo;
         }
-
 
         public float GradoAlcoholico { get => gradoAlcoholico; set => gradoAlcoholico = value; }
+        public TiposBebidasAlcoholicas Tipo { get => tipo; set => tipo = value; }
 
-        public static bool operator ==(BebidaAlcoholica b1, BebidaAlcoholica b2)
-        {
-            return b1.Id == b2.Id;
-        }
+        
 
-        public static bool operator !=(BebidaAlcoholica b1, BebidaAlcoholica b2)
-        {
-            return !(b1 == b2);
-        }
     }
 }
+
+
+
+
+    

@@ -1,5 +1,5 @@
 ﻿using Bar.Properties;
-using Entidades;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

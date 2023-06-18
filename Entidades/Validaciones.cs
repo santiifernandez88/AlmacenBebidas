@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Validaciones
     {
-        public static bool ValidarString(string cadena)
+        /*public static bool ValidarString(string cadena)
         {
             bool validado = false;
 
@@ -22,7 +22,7 @@ namespace Entidades
 
 
             return validado; 
-        }
+        }*/
 
         public static bool ValidarEntero(int entero)
         {
@@ -32,22 +32,15 @@ namespace Entidades
             {
                 validado = true;
             }
+            else
+            {
+                throw new Exception("Error ingrese un numero");
+            }
 
             return validado;
         }
 
-        public static bool ValidarEntidadEnLista<T>(T entidad, List<T> lista)
-        {
-            bool validado = true;
 
-            foreach(T e in lista) 
-            {
-                if(e == entidad)
-                {
-
-                }
-            }
-        }
 
     }
 }

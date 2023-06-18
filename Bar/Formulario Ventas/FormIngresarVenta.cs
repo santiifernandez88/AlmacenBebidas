@@ -1,5 +1,7 @@
 ﻿using Entidades;
+using Entidades.Bebidas;
 using Entidades.Clientes;
+using Entidades.Usuarios;
 using Entidades.Ventas;
 using System;
 using System.Collections.Generic;
@@ -15,27 +17,48 @@ namespace Bar.Formulario_Ventas
 {
     public partial class FormIngresarVenta : Form
     {
-        public FormIngresarVenta()
+        Controlador controlador = new Controlador();
+        Usuario usuario;
+        public FormIngresarVenta(Usuario usuario)
         {
             InitializeComponent();
-
-            lstClientes.Format += lstClientes_Format;
+            this.usuario = usuario;
+            lstCliente.Format += lstClientes_Format;
         }
 
         private void FormIngresarVenta_Load(object sender, EventArgs e)
         {
-            cmbMetodoPago.Items.Add(MetodoDePago.MercadoPago);
-            cmbMetodoPago.Items.Add(MetodoDePago.Debito);
-            cmbMetodoPago.Items.Add(MetodoDePago.Credito);
-            cmbMetodoPago.Items.Add(MetodoDePago.Efectivo);
-            ConfigurarListBox(Controlador.ObtenerTodosClientes());          
+            foreach (var metodo in Enum.GetValues(typeof(MetodoDePago)))
+            {
+                cmbMetodoPago.Items.Add(metodo);
+            }
+
+            cmbBebida.Items.Add("Bebida alcoholica");
+            cmbBebida.Items.Add("Bebida no alcoholica");
+            cmbBebida.Items.Add("Combo");
+
+            ConfigurarListBoxClientes(controlador.ObtenerTodosClientes());
+            ConfigurarListBoxBebidasAlc(controlador.ObtenerTodasBebidasAlcoholicas());
+            ConfigurarListBoxBebidasNoAlc(controlador.ObtenerTodasBebidasNoAlcoholicas());
         }
 
-        public void ConfigurarListBox(List<Cliente> clientes)
+        public void ConfigurarListBoxClientes(List<Cliente> clientes)
         {
-            lstClientes.DataSource = null;
-            lstClientes.DataSource = clientes;
-            lstClientes.DisplayMember = "Nombre";
+            lstCliente.DataSource = null;
+            lstCliente.DataSource = clientes;
+            lstCliente.DisplayMember = "Nombre";
+        }
+        public void ConfigurarListBoxBebidasAlc(List<BebidaAlcoholica> bebidas)
+        {
+            lstCliente.DataSource = null;
+            lstCliente.DataSource = bebidas;
+            lstCliente.DisplayMember = "Nombre";
+        }
+        public void ConfigurarListBoxBebidasNoAlc(List<BebidaNoAlcoholica> bebidas)
+        {
+            lstCliente.DataSource = null;
+            lstCliente.DataSource = bebidas;
+            lstCliente.DisplayMember = "Nombre";
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -61,17 +84,43 @@ namespace Bar.Formulario_Ventas
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             int dniARetornar;
-            Cliente cliente = (Cliente)lstClientes.SelectedItem;
+            int idBebidaARetornar;
+            Cliente cliente = (Cliente)lstCliente.SelectedItem;
+            Bebida bebida = (Bebida)lstBebidas.SelectedItem;
             dniARetornar = cliente.Dni;
-            if (Controlador.CrearVenta(cmbMetodoPago.SelectedIndex, txtBebidaId.Text, dniARetornar, txtEmpleadoId.Text))
+            ValidarBebida(dniARetornar, idBebidaARetornar);
+        }
+
+        private void ValidarBebida(int dniARetornar)
+        {
+            if (cmbBebida.SelectedItem == "Bebida alcoholica" || cmbBebida.SelectedItem == "Bebida no alcoholica")
             {
-                MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
+                if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, , dniARetornar, this.usuario.Empleado.Id))
+                {
+                    MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo añadir la venta al historial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("No se pudo añadir la venta al historial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (cmbBebida.SelectedItem == "Combo")
+                {
+                    if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, , dniARetornar, this.usuario.Empleado.Id))
+                    {
+                        MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo añadir la venta al historial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -84,5 +133,26 @@ namespace Bar.Formulario_Ventas
             e.Value = displayText;
         }
 
+        private void lstBebidas_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if(cmbBebida.SelectedItem == "Bebida alcoholica")
+            {
+                BebidaAlcoholica bebidaAlcoholica = (BebidaAlcoholica)e.ListItem;
+
+                string displayText = bebidaAlcoholica.ToString();
+
+                e.Value = displayText;
+            }
+
+        }
+
+        private void lstBebidasNoAlc_Format(object sender, ListControlConvertEventArgs e)
+        {
+            BebidaNoAlcoholica bebidaNoAlcoholica = (BebidaNoAlcoholica)e.ListItem;
+
+            string displayText = bebidaNoAlcoholica.ToString();
+
+            e.Value = displayText;
+        }
     }
 }

@@ -2,6 +2,8 @@
 using Bar.Formulario_Inventario;
 using Entidades;
 using Entidades.Bebidas;
+using Entidades.Clientes;
+using Entidades.Empleados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace Bar.Formulario_Clientes
 {
     public partial class FormAltaCliente : FormAltaEmpleado
     {
+        Controlador controlador = new Controlador();
         public FormAltaCliente()
         {
             InitializeComponent();
@@ -23,19 +26,16 @@ namespace Bar.Formulario_Clientes
 
         private void FormAltaCliente_Load(object sender, EventArgs e)
         {
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Vino);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Licor);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Vodka);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Gin);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Cerveza);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Vermu);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Whiskey);
-            cmbBebidaFavorita.Items.Add(TiposDeBebida.Fernet);
+            foreach (var estatus in Enum.GetValues(typeof(Estatus)))
+            {
+                cmbBebidaFavorita.Items.Add(estatus);
+            }
+           
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.CrearCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex))
+            if (controlador.AltaCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex))
             {
                 MessageBox.Show("Se agrego el cliente correctamente.", "Agregar cliente");
                 this.DialogResult = DialogResult.OK;

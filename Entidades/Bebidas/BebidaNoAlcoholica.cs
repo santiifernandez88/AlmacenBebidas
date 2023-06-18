@@ -6,19 +6,24 @@ using System.Threading.Tasks;
 
 namespace Entidades.Bebidas
 {
-    public abstract class BebidaNoAlcoholica : Bebida
+    public enum TiposBebidasNoAlc
     {
-        private bool tieneGas;
-        private float litros;
+        Gaseosa,
+        Jugo,
+        Energizante
+    }
+    public class BebidaNoAlcoholica : Bebida
+    {
+        private TiposBebidasNoAlc tipo;
+        private bool contienenAzucar;
 
-        protected BebidaNoAlcoholica(string marca, float precio, int stock, string descripcion, bool tieneGas, float litros) : base(marca, precio, stock, descripcion)
+        public BebidaNoAlcoholica(string marca, float precio, int stock, string descripcion, int mLitros, TiposBebidasNoAlc tipo, bool contienenAzucar) : base(marca, precio, stock, mLitros, descripcion)
         {
-            this.tieneGas = tieneGas;
-            this.litros = litros;
+            this.tipo = tipo;
+            this.contienenAzucar = contienenAzucar;
         }
 
-
-        public bool TieneGas { get => tieneGas; set => tieneGas = value; }
-        public float Litros { get => litros; set => litros = value; }
+        public bool ContienenAzucar { get => contienenAzucar; set => contienenAzucar = value; }
+        public TiposBebidasNoAlc Tipo { get => tipo; set => tipo = value; }
     }
 }

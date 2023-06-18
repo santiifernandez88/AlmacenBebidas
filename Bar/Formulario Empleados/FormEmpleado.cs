@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Entidades.Empleados;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Bar.Formulario_Empleados
 {
     public partial class FormEmpleado : Form
     {
+        Controlador controlador = new Controlador();
         protected Usuario usuario = new Usuario("aaa", "aaa", new Empleado("a", "a", 1, 1));
         int celdaClickeada;
 
@@ -41,7 +43,7 @@ namespace Bar.Formulario_Empleados
             {
                 btnBajaEmp.Visible = false;
             }
-            ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+            ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
             dtgEmpleado.ReadOnly = true;
 
         }
@@ -65,7 +67,7 @@ namespace Bar.Formulario_Empleados
             DialogResult dg = formAlta.ShowDialog();
             if (dg == DialogResult.OK)
             {
-                ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+                ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
             }
         }
 
@@ -75,7 +77,7 @@ namespace Bar.Formulario_Empleados
             DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un empleado?", "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
             {
-                if (Controlador.BorrarEmpleado(idAEliminar))
+                if (controlador.BajaEmpleado(idAEliminar))
                 {
                     MessageBox.Show("Se elimino correctamente al empleado");
                 }
@@ -83,7 +85,7 @@ namespace Bar.Formulario_Empleados
                 {
                     MessageBox.Show("Error, no se pudo eliminar correctamente al empleado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+                ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
             }
         }
 
@@ -94,12 +96,12 @@ namespace Bar.Formulario_Empleados
             if (dg == DialogResult.Yes)
             {
                 int idAModificar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[0].Value;
-                Empleado empleadoAModificar = Controlador.TraerEmpleadoId(idAModificar);
+                Empleado empleadoAModificar = controlador.TraerEmpleadoId(idAModificar);
                 FormModificarEmpleado formModificar = new FormModificarEmpleado(empleadoAModificar);
                 DialogResult dg2 = formModificar.ShowDialog();
                 if (dg2 == DialogResult.OK)
                 {
-                    ActualizarDatagrid(Controlador.ObtenerTodosEmpleados());
+                    ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
                 }
             }
 

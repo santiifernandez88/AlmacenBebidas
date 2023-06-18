@@ -1,10 +1,11 @@
 using Entidades;
-
+using Entidades.Usuarios;
 
 namespace Bar
 {
     public partial class Login : Form
     {
+        
         public Login()
         {
             InitializeComponent();
@@ -13,8 +14,9 @@ namespace Bar
         private void btn_Ingresar_Click(object sender, EventArgs e)
         {
             Usuario usuario;
+            AdministradorUsuario administradorUsuario = new AdministradorUsuario();
 
-            if (Controlador.ValidarUsuario(txt_NombreUsuario.Text, txt_Contraseña.Text, out usuario))
+            if (administradorUsuario.ValidarUsuario(txt_NombreUsuario.Text, txt_Contraseña.Text, out usuario))
             {
                 MenuPrincipal menuPrincipal = new MenuPrincipal(usuario);
                 menuPrincipal.Show();

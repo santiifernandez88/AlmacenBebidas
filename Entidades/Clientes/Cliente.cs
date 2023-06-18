@@ -7,16 +7,24 @@ using Entidades.Bebidas;
 
 namespace Entidades.Clientes
 {
+    public enum Estatus
+    {
+        Activo,
+        PocoFrecuente,
+        Inactivo
+        
+    }
+
     public class Cliente : Persona
     {
-        private TiposDeBebida bebidaFavorita;
+        private Estatus frecuencia;
 
-        public Cliente(string nombre, string apellido, int edad, int dni, TiposDeBebida bebidaFavorita) : base(nombre, apellido, edad, dni)
+        public Cliente(string nombre, string apellido, int edad, int dni, Estatus frecuencia) : base(nombre, apellido, edad, dni)
         {
-            this.bebidaFavorita = bebidaFavorita;
+            this.frecuencia = frecuencia;
         }
 
-        public TiposDeBebida BebidaFavorita { get => bebidaFavorita; set => bebidaFavorita = value; }
+        public Estatus Frecuencia { get => frecuencia; set => frecuencia = value; }
 
         public static bool operator ==(Cliente a, Cliente b)
         {
@@ -32,7 +40,7 @@ namespace Entidades.Clientes
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(base.ToString() + " | " + bebidaFavorita);
+            sb.Append(base.ToString() + " | " + frecuencia);
 
             return sb.ToString();
         }

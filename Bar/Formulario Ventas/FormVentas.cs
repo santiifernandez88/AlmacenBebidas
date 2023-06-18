@@ -1,6 +1,8 @@
 ﻿using Bar.Formulario_Ventas;
 using Entidades;
 using Entidades.Empleados;
+using Entidades.Usuarios;
+using Entidades.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,7 @@ namespace Bar
 {
     public partial class FormVentas : Form
     {
+        Controlador controlador = new Controlador();   
         Usuario usuario;
         int celdaClickeada;
 
@@ -44,7 +47,7 @@ namespace Bar
                 btnBorrarVenta.Visible = false;
             }
             dtgVentas.DefaultCellStyle.ForeColor = Color.Black;
-            ActualizarDatagrid(Controlador.ObtenerTodasVentas());
+            ActualizarDatagrid(controlador.ObtenerTodasVentas());
             dtgVentas.ReadOnly = true;
         }
 
@@ -52,7 +55,7 @@ namespace Bar
         {
             dtgVentas.DataSource = null;
             dtgVentas.DataSource = ventas;
-            lblCantidad.Text = Controlador.AcumuladorVentas().ToString();
+            lblCantidad.Text = controlador.AcumuladorGanancias().ToString();
         }
 
         private void dtgVentas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -63,10 +66,10 @@ namespace Bar
         private void btnIniciarVenta_Click(object sender, EventArgs e)
         {
             FormIngresarVenta formIngresarVenta = new FormIngresarVenta();
-            DialogResult dg = formIngresarVenta.ShowDialog();
+            DialogResult dg = formIngresarVenta.ShowDialog(usuario);
             if (dg == DialogResult.OK)
             {
-                ActualizarDatagrid(Controlador.ObtenerTodasVentas());
+                ActualizarDatagrid(controlador.ObtenerTodasVentas());
             }
         }
 
@@ -77,7 +80,7 @@ namespace Bar
             DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar una venta?", "Eliminar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
             {
-                if (Controlador.BorrarVentas(idAEliminar))
+                if (controlador.BajaVenta(idAEliminar))
                 {
                     MessageBox.Show("Se elimino correctamente la venta", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -85,7 +88,7 @@ namespace Bar
                 {
                     MessageBox.Show("Error, no se pudo eliminar correctamente la venta", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                ActualizarDatagrid(Controlador.ObtenerTodasVentas());
+                ActualizarDatagrid(controlador.ObtenerTodasVentas());
             }
         }
     }

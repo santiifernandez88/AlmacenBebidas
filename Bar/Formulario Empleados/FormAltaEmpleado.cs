@@ -14,6 +14,7 @@ namespace Bar.Formulario_Empleados
 {
     public partial class FormAltaEmpleado : Form
     {
+        Controlador controlador = new Controlador();
         public FormAltaEmpleado()
         {
             InitializeComponent();
@@ -22,14 +23,16 @@ namespace Bar.Formulario_Empleados
         private void FormAlta_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
-            cmbPuesto.Items.Add(PuestosDeTrabajo.Jefe);
-            cmbPuesto.Items.Add(PuestosDeTrabajo.Encargado);
-            cmbPuesto.Items.Add(PuestosDeTrabajo.Vendedor);
+            
+            foreach(var puesto in Enum.GetValues(typeof(PuestosDeTrabajo)))
+            {
+                cmbPuesto.Items.Add(puesto);
+            }                                  
         }
 
         public virtual void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Controlador.CrearEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex))
+            if (controlador.AltaEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex))
             {
                 MessageBox.Show("Se pudo crear correctamente el empleado.");
                 this.DialogResult = DialogResult.OK;

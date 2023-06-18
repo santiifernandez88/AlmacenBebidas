@@ -1,8 +1,8 @@
 ﻿using Bar.Formulario_Clientes;
 using Bar.Formulario_Empleados;
 using Bar.Properties;
-using Entidades;
 using Entidades.Empleados;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +42,7 @@ namespace Bar
             lblId.Text = this.usuario.Empleado.Id.ToString();
             lblTipoUsuario.Text = this.usuario.Empleado.Puesto.ToString();
 
-            if(this.usuario.Empleado.Puesto == PuestosDeTrabajo.Jefe)
+            if (this.usuario.Empleado.Puesto == PuestosDeTrabajo.Jefe)
             {
                 picFotoUser.BackgroundImage = Resources.SuperAdmin;
                 picFotoUser.BackgroundImageLayout = ImageLayout.Stretch;
