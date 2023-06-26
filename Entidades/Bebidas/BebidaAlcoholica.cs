@@ -32,7 +32,14 @@ namespace Entidades.Bebidas
         public float GradoAlcoholico { get => gradoAlcoholico; set => gradoAlcoholico = value; }
         public TiposBebidasAlcoholicas Tipo { get => tipo; set => tipo = value; }
 
-        
+        public override string ToString()
+        {         
+            StringBuilder sb = new StringBuilder();
+           
+            sb.Append(base.ToString() + "" + this.tipo);
+
+            return base.ToString();
+        }
 
     }
 }

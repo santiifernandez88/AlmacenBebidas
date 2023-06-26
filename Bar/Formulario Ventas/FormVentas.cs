@@ -3,21 +3,12 @@ using Entidades;
 using Entidades.Empleados;
 using Entidades.Usuarios;
 using Entidades.Ventas;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Bar
 {
     public partial class FormVentas : Form
     {
-        Controlador controlador = new Controlador();   
+        Controlador controlador = new Controlador();
         Usuario usuario;
         int celdaClickeada;
 
@@ -65,8 +56,8 @@ namespace Bar
 
         private void btnIniciarVenta_Click(object sender, EventArgs e)
         {
-            FormIngresarVenta formIngresarVenta = new FormIngresarVenta();
-            DialogResult dg = formIngresarVenta.ShowDialog(usuario);
+            FormIngresarVenta formIngresarVenta = new FormIngresarVenta(usuario);
+            DialogResult dg = formIngresarVenta.ShowDialog();
             if (dg == DialogResult.OK)
             {
                 ActualizarDatagrid(controlador.ObtenerTodasVentas());

@@ -43,5 +43,14 @@ namespace Entidades.Bebidas
         {
             return !(b1 == b2);
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append($"{this.marca} {this.precio} {this.stock} {this.mLitros} {this.descripcion}");
+
+            return sb.ToString();
+        }
     }
 }

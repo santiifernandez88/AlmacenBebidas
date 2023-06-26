@@ -68,7 +68,7 @@
             // cmbMetodoPago
             // 
             cmbMetodoPago.FormattingEnabled = true;
-            cmbMetodoPago.Location = new Point(598, 106);
+            cmbMetodoPago.Location = new Point(588, 106);
             cmbMetodoPago.Name = "cmbMetodoPago";
             cmbMetodoPago.Size = new Size(214, 28);
             cmbMetodoPago.TabIndex = 10;
@@ -147,6 +147,7 @@
             cmbBebida.Name = "cmbBebida";
             cmbBebida.Size = new Size(243, 28);
             cmbBebida.TabIndex = 15;
+            cmbBebida.SelectedIndexChanged += cmbBebida_SelectedIndexChanged;
             // 
             // lstBebidas
             // 
@@ -170,6 +171,7 @@
             btnAplicar.TabIndex = 21;
             btnAplicar.Text = "Aplicar";
             btnAplicar.UseVisualStyleBackColor = false;
+            btnAplicar.Click += btnAplicar_Click;
             // 
             // lblCombo
             // 

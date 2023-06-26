@@ -23,18 +23,32 @@ namespace Entidades.Ventas
         private int idEmpleado;
         private float ganancias;
         private DateTime fechaDeVenta;
+        private int idBebidaUnoCombo;
+        private int idBebidaDosCombo;
 
         private static int siguienteId = 1;
 
         public Venta(MetodoDePago metodoDePago, int dniCliente, int idBebida, int idEmpleado, float ganancias, DateTime fechaDeVenta)
         {
-            id = siguienteId++;
-            MetodoDePago = metodoDePago;
-            DniCliente = dniCliente;
+            this.id = siguienteId++;
+            this.metodoDePago = metodoDePago;
+            this.dniCliente = dniCliente;
             this.idBebida = idBebida;
-            IdEmpleado = idEmpleado;
-            Ganancias = ganancias;
-            FechaDeVenta = fechaDeVenta;
+            this.idEmpleado = idEmpleado;
+            this.ganancias = ganancias;
+            this.fechaDeVenta = fechaDeVenta;
+        }
+
+        public Venta(MetodoDePago metodoDePago, int dniCliente, int idEmpleado, float ganancias, DateTime fechaDeVenta, int idBebidaUnoCombo, int idBebidaDosCombo)
+        {
+            this.id = siguienteId++;
+            this.metodoDePago = metodoDePago;
+            this.dniCliente = dniCliente;
+            this.idEmpleado = idEmpleado;
+            this.ganancias = ganancias;
+            this.fechaDeVenta = fechaDeVenta;
+            this.idBebidaUnoCombo = idBebidaUnoCombo;
+            this.idBebidaDosCombo = idBebidaDosCombo;
         }
 
         public int Id { get => id; }
@@ -44,6 +58,8 @@ namespace Entidades.Ventas
         public int IdEmpleado { get => idEmpleado; set => idEmpleado = value; }
         public float Ganancias { get => ganancias; set => ganancias = value; }
         public DateTime FechaDeVenta { get => fechaDeVenta; set => fechaDeVenta = value; }
+        public int IdBebidaUnoCombo { get => idBebidaUnoCombo; set => idBebidaUnoCombo = value; }
+        public int IdBebidaDosCombo { get => idBebidaDosCombo; set => idBebidaDosCombo = value; }
 
         public static bool operator ==(Venta v1, Venta v2)
         {

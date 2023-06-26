@@ -17,6 +17,7 @@ namespace Bar.Formulario_Clientes
     public partial class FormCliente : FormEmpleado
     {
         int celdaClickeada;
+        Controlador controlador = new Controlador();   
         protected override CreateParams CreateParams
         {
             get
@@ -39,7 +40,7 @@ namespace Bar.Formulario_Clientes
                 btnBajaEmp.Visible = true;
            }
 
-            ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+            ActualizarDatagrid(controlador.ObtenerTodosClientes());
             dtgEmpleado.ReadOnly = true;
         }
 
@@ -60,7 +61,7 @@ namespace Bar.Formulario_Clientes
             DialogResult dg = formAlta.ShowDialog();
             if(dg == DialogResult.OK) 
             {
-                ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+                ActualizarDatagrid(controlador.ObtenerTodosClientes());
             }
         }
 
@@ -70,7 +71,7 @@ namespace Bar.Formulario_Clientes
             DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
             {
-                if (Controlador.BorrarCliente(dniAEliminar))
+                if (controlador.BajaCliente(dniAEliminar))
                 {
                     MessageBox.Show("Se elimino correctamente al cliente");
                 }
@@ -78,7 +79,7 @@ namespace Bar.Formulario_Clientes
                 {
                     MessageBox.Show("Error, no se pudo eliminar correctamente el cliente", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+                ActualizarDatagrid(controlador.ObtenerTodosClientes());
             }
         }
 
@@ -88,12 +89,12 @@ namespace Bar.Formulario_Clientes
             if (dg == DialogResult.Yes)
             {
                 int dniAModificar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[4].Value;             
-                Cliente clienteAModificar = Controlador.TraerClienteDni(dniAModificar);
+                Cliente clienteAModificar = controlador.TraerClienteDni(dniAModificar);
                 FormModificarCliente formModificar = new FormModificarCliente(clienteAModificar);
                 DialogResult dg2 = formModificar.ShowDialog();   
                 if(dg2 == DialogResult.OK) 
                 {
-                    ActualizarDatagrid(Controlador.ObtenerTodosClientes());
+                    ActualizarDatagrid(controlador.ObtenerTodosClientes());
                 }
             }           
         }

@@ -16,6 +16,17 @@ namespace Entidades
         #region Clientes
         AdministradorCliente administradorCliente = new AdministradorCliente();
 
+        public List<Cliente> ObtenerTodosClientes()
+        {
+            return administradorCliente.ObtenerTodos();
+        }
+
+        public Cliente TraerClienteDni(int dni)
+        {
+            return administradorCliente.TraerClienteDni(dni);
+        }
+
+
         public bool AltaCliente(string nombre, string apellido, string edadStr, string dniStr, int frecuenciaIndex)
         {
             bool controlado = false;
@@ -206,11 +217,23 @@ namespace Entidades
             return administradorVenta.ObtenerTodos();
         }
 
-        public bool AltaVenta(int metodoInt, string bebidaIdStr, int dniCliente, string idEmpleadoStr)
+        public bool AltaVenta(int metodoInt, int bebidaId, int dniCliente, int idEmpleado)
         {
             bool controlado = false;
 
-            if(administradorVenta.CrearVenta(metodoInt, bebidaIdStr, dniCliente, idEmpleadoStr))
+            if(administradorVenta.CrearVenta(metodoInt, bebidaId, dniCliente, idEmpleado))
+            {
+                controlado = true;
+            }
+
+            return controlado;
+        }
+
+        public bool AltaVenta(int metodoInt, int idbebidaUno, int idBebidaDos, int dniCliente, int idEmpleadoStr)
+        {
+            bool controlado = false;
+
+            if (administradorVenta.CrearVenta(metodoInt, dniCliente, idEmpleadoStr, idbebidaUno, idBebidaDos))
             {
                 controlado = true;
             }

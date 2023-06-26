@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Ventas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -117,9 +118,10 @@ namespace Entidades.Bebidas
 
             foreach (BebidaAlcoholica b in ObtenerTodos())
             {
-                if (id <= b.Id)
+                if (id == b.Id)
                 {
                     validado = true;
+                    break;
                 }
             }
 

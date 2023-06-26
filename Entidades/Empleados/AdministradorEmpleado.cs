@@ -25,13 +25,13 @@ namespace Entidades.Empleados
         {
             AdministradorUsuario administradorUsuario = new AdministradorUsuario();
             bool result = false;
-            int edad;
-            int dni;
+            int edad = 0;
+            int dni = 0;
             float sueldo;
             PuestosDeTrabajo puesto = (PuestosDeTrabajo)puestoIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && !string.IsNullOrEmpty(nombreUsuario) && !string.IsNullOrEmpty(contraseña)
-                && int.TryParse(edadStr, out edad) && int.TryParse(dniStr, out dni) && float.TryParse(sueldoStr, out sueldo))
+            if (Validaciones.ValidarString(nombre) && Validaciones.ValidarString(apellido) && Validaciones.ValidarString(nombreUsuario) && Validaciones.ValidarString(contraseña)
+                && Validaciones.ValidarEntero(edadStr, edad) && Validaciones.ValidarEntero(dniStr, dni) && float.TryParse(sueldoStr, out sueldo))
             {
                 Empleado empleadoNuevo = new Empleado(nombre, apellido, edad, dni, sueldo, puesto);
                 Usuario usuarioNuevo = new Usuario(nombreUsuario, contraseña, empleadoNuevo);
@@ -58,13 +58,13 @@ namespace Entidades.Empleados
         public bool ModificarEmpleado(Empleado empleado, string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, int puestoIndex)
         {
             bool modificado = false;
-            int edad;
-            int dni;
+            int edad = 0;
+            int dni = 0;
             float sueldo;
             PuestosDeTrabajo puesto = (PuestosDeTrabajo)puestoIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && int.TryParse(edadStr, out edad)
-                && int.TryParse(dniStr, out dni) && float.TryParse(sueldoStr, out sueldo))
+            if (Validaciones.ValidarString(nombre) && Validaciones.ValidarString(apellido) && Validaciones.ValidarEntero(edadStr, edad)
+                && Validaciones.ValidarEntero(dniStr, dni) && float.TryParse(sueldoStr, out sueldo))
             {
 
                 Empleado empleadoModificado = new Empleado(nombre, apellido, edad, dni, sueldo, puesto);

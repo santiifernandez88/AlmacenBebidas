@@ -25,5 +25,14 @@ namespace Entidades.Bebidas
 
         public bool ContienenAzucar { get => contienenAzucar; set => contienenAzucar = value; }
         public TiposBebidasNoAlc Tipo { get => tipo; set => tipo = value; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(base.ToString() + "" + this.tipo);
+
+            return base.ToString();
+        }
     }
 }

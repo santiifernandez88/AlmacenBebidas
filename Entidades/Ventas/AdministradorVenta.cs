@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Bebidas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,13 +28,13 @@ namespace Entidades.Ventas
         /// <returns></returns>
         public bool Agregar(Venta venta)
         {
-            bool agregado = false;
+            bool agregado;
 
-            if(ValidarEnLista(venta)) 
-            {
+            
+            
                 BaseDeDatos.GuardarVentas(venta);
                 agregado = true;
-            }
+            
             
             return agregado;
         }
@@ -72,6 +73,7 @@ namespace Entidades.Ventas
                 if(venta.Id == v.Id)
                 {
                     noEncontrado = true;
+                    break;
                 }
             }
 
@@ -93,24 +95,52 @@ namespace Entidades.Ventas
             return acumulador;
         }
 
-        public bool CrearVenta(int metodoInt, string idBebidaStr, int dniCliente, string idEmpleadoStr)
+        public bool CrearVenta(int metodoInt, int idBebida, int dniCliente, int idEmpleado)
         {
+            AdministradorBebidaAlcoholica administradorBebidaAlcoholica = new AdministradorBebidaAlcoholica();
+            AdministradorBebidasNoAlcoholicas administradorBebidasNoAlcoholicas = new AdministradorBebidasNoAlcoholicas();
             bool validado = false;
-            int idBebida;
-            int idEmpleado;
             float ganancias;
             MetodoDePago metodo = (MetodoDePago)metodoInt;
-
-            if (int.TryParse(idBebidaStr, out idBebida) && int.TryParse(idEmpleadoStr, out idEmpleado))
+            
+            if(administradorBebidaAlcoholica.ValidarIdBebida(idBebida))
             {
-                if (ValidarIdBebida(idBebida) && ValidarIdEmpleado(idEmpleado))
+                ganancias = administradorBebidaAlcoholica.BuscarPrecioPorId(idBebida);
+                Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
+                if(Agregar(ventaNueva))
                 {
-                    ganancias = BuscarPrecioPorId(idBebida);
-                    Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
-                    Agregar(ventaNueva);
-                    DescontarStock(idBebida);
+                    administradorBebidaAlcoholica.DescontarStock(idBebida);
                     validado = true;
                 }
+            }
+            
+            if(administradorBebidasNoAlcoholicas.ValidarIdBebida(idBebida))
+            {
+                ganancias = administradorBebidasNoAlcoholicas.BuscarPrecioPorId(idBebida);
+                Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
+                if (Agregar(ventaNueva))
+                {
+                    administradorBebidaAlcoholica.DescontarStock(idBebida);
+                    validado = true;
+                }
+            }
+
+                    
+            return validado;
+        }
+
+        public bool CrearVenta(int metodoInt, int dniCliente, int idEmpleado, int idBebidaUno, int idBebidaDos)
+        {
+            bool validado = false;
+            float ganancias;
+            MetodoDePago metodo = (MetodoDePago)metodoInt;
+            ganancias = Combo.BuscarPrecioCombo(idBebidaUno, idBebidaDos);
+
+            Venta ventaNueva = new Venta(metodo, dniCliente, idEmpleado, ganancias, DateTime.Now, idBebidaUno, idBebidaDos);
+            if (Agregar(ventaNueva))
+            {
+                Combo.DescontarStockCombo(idBebidaUno, idBebidaDos);
+                validado = true;
             }
 
             return validado;

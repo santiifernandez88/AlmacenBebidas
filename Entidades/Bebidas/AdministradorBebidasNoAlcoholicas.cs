@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entidades.Bebidas
 {
-    internal class AdministradorBebidasNoAlcoholicas : IAdministrable<BebidaNoAlcoholica>, IBebible
+    public class AdministradorBebidasNoAlcoholicas : IAdministrable<BebidaNoAlcoholica>, IBebible
     {
         public bool CrearBebidaNoAlcoholica(string marca, string precioStr, string stockStr, string descripcion, string mLitrosStr, int tipoBebidaIndex)
         {
             bool validado = false;
-            bool contienenAzucar;
+            bool contienenAzucar = true;
             float gradoAlc;
             float precio;
             int mLitros;
@@ -118,9 +118,10 @@ namespace Entidades.Bebidas
 
             foreach(BebidaNoAlcoholica b in ObtenerTodos())
             {
-                if (id <= b.Id)
+                if (id == b.Id)
                 {
                     validado = true;
+                    break;
                 }
             }
 

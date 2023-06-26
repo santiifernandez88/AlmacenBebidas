@@ -44,8 +44,6 @@
             lblApellido = new Label();
             picFotoUser = new PictureBox();
             lblNombre = new Label();
-            bebidasAlcoholicasToolStripMenuItem = new ToolStripMenuItem();
-            bebidasNoAlcoholicasToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             pnlDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picFotoUser).BeginInit();
@@ -90,7 +88,6 @@
             // 
             // inventarioToolStripMenuItem
             // 
-            inventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bebidasAlcoholicasToolStripMenuItem, bebidasNoAlcoholicasToolStripMenuItem });
             inventarioToolStripMenuItem.Font = new Font("Microsoft Himalaya", 18F, FontStyle.Regular, GraphicsUnit.Point);
             inventarioToolStripMenuItem.ForeColor = Color.White;
             inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
@@ -211,18 +208,6 @@
             lblNombre.TabIndex = 6;
             lblNombre.Text = "asddsad";
             // 
-            // bebidasAlcoholicasToolStripMenuItem
-            // 
-            bebidasAlcoholicasToolStripMenuItem.Name = "bebidasAlcoholicasToolStripMenuItem";
-            bebidasAlcoholicasToolStripMenuItem.Size = new Size(287, 34);
-            bebidasAlcoholicasToolStripMenuItem.Text = "Bebidas alcoholicas";
-            // 
-            // bebidasNoAlcoholicasToolStripMenuItem
-            // 
-            bebidasNoAlcoholicasToolStripMenuItem.Name = "bebidasNoAlcoholicasToolStripMenuItem";
-            bebidasNoAlcoholicasToolStripMenuItem.Size = new Size(287, 34);
-            bebidasNoAlcoholicasToolStripMenuItem.Text = "Bebidas no alcoholicas";
-            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -265,7 +250,5 @@
         private Label lblApellido;
         private PictureBox picFotoUser;
         private Label lblNombre;
-        private ToolStripMenuItem bebidasAlcoholicasToolStripMenuItem;
-        private ToolStripMenuItem bebidasNoAlcoholicasToolStripMenuItem;
     }
 }

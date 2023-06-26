@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class SerializadoraJSON<T> : ISerializable<T>
+    /*public class SerializadoraJSON<T> : ISerializable<T>
     {
 
         public bool Escribir(T objeto, string path)
@@ -26,9 +26,9 @@ namespace Data
             };
         }
 
-        public T Leer(string path)
+        public void Leer(string path)
         {
-            T lista = null;
+            T lista;
 
             try
             {
@@ -41,7 +41,7 @@ namespace Data
 
             }
 
-            return lista;
+            
         }
-    }
+    }*/
 }

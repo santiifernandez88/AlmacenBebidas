@@ -35,6 +35,8 @@
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            btnCambiar = new Button();
+            lblTitulo = new Label();
             SuspendLayout();
             // 
             // btnBajaEmp
@@ -108,16 +110,49 @@
             dataGridViewTextBoxColumn7.ReadOnly = true;
             dataGridViewTextBoxColumn7.Width = 125;
             // 
+            // btnCambiar
+            // 
+            btnCambiar.BackColor = Color.DarkSlateGray;
+            btnCambiar.ForeColor = Color.White;
+            btnCambiar.Location = new Point(176, 44);
+            btnCambiar.Name = "btnCambiar";
+            btnCambiar.Size = new Size(94, 29);
+            btnCambiar.TabIndex = 6;
+            btnCambiar.Text = "Cambiar ";
+            btnCambiar.UseVisualStyleBackColor = false;
+            btnCambiar.Click += btnCambiar_Click;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.BorderStyle = BorderStyle.Fixed3D;
+            lblTitulo.Font = new Font("Microsoft Himalaya", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(276, 9);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(163, 29);
+            lblTitulo.TabIndex = 7;
+            lblTitulo.Text = "Bebidas Alcoholicas";
+            // 
             // Inventario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gris;
             ClientSize = new Size(1235, 725);
+            Controls.Add(lblTitulo);
+            Controls.Add(btnCambiar);
             Name = "Inventario";
             Text = "Inventario";
             Load += Inventario_Load;
+            Controls.SetChildIndex(btnAltaEmp, 0);
+            Controls.SetChildIndex(btnBajaEmp, 0);
+            Controls.SetChildIndex(btnModEmp, 0);
+            Controls.SetChildIndex(btnCambiar, 0);
+            Controls.SetChildIndex(lblTitulo, 0);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -128,5 +163,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private Button btnCambiar;
+        private Label lblTitulo;
     }
 }
