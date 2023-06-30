@@ -147,6 +147,7 @@
             // 
             // cmbTipoDeBebida
             // 
+            cmbTipoDeBebida.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoDeBebida.FormattingEnabled = true;
             cmbTipoDeBebida.Location = new Point(478, 274);
             cmbTipoDeBebida.Name = "cmbTipoDeBebida";
@@ -155,6 +156,7 @@
             // 
             // cmbContieneAzuc
             // 
+            cmbContieneAzuc.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbContieneAzuc.FormattingEnabled = true;
             cmbContieneAzuc.Location = new Point(478, 209);
             cmbContieneAzuc.Name = "cmbContieneAzuc";

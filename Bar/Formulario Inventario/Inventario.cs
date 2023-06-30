@@ -49,6 +49,7 @@ namespace Bar
             ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
             dtgEmpleado.ReadOnly = true;
             btnModEmp.Text = "Rellenar stock";
+            lblTitulo.Text = "Bebidas alcoholicas";
         }
 
         private void ActualizarDatagridAlcoholicas(List<BebidaAlcoholica> bebidas)
@@ -65,41 +66,39 @@ namespace Bar
 
         public override void btnBajaEmp_Click(object sender, EventArgs e)
         {
-            int idAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[2].Value;
-            DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar esta bebida?", "Eliminar bebida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if(dg == DialogResult.Yes)
+            try
             {
-                if(lblTitulo.Text == "Bebida alcoholica")
-                { 
-                    if(controlador.BajaBebidaAlcoholica(idAEliminar))
-                    {
-                        MessageBox.Show("Se elimino correctamente la bebida");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error, no se pudo eliminar correctamente la bebida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
-                }
-                else
+                int idAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[2].Value;
+                DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar esta bebida?", "Eliminar bebida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
                 {
-                    if (controlador.BajaBebidaNoAlcoholica(idAEliminar))
+                    if (lblTitulo.Text == "Bebidas alcoholicas")
                     {
-                        MessageBox.Show("Se elimino correctamente al empleado");
+                        if (controlador.BajaBebidaAlcoholica(idAEliminar))
+                        {
+                            MessageBox.Show("Se elimino correctamente la bebida");
+                            ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error, no se pudo eliminar correctamente la bebida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (controlador.BajaBebidaNoAlcoholica(idAEliminar))
+                        {
+                            MessageBox.Show("Se elimino correctamente la bebida");
+                            ActualizarDatagridNoAlcoholicas(controlador.ObtenerTodasBebidasNoAlcoholicas());
+                        }
                     }
-                    ActualizarDatagridNoAlcoholicas(controlador.ObtenerTodasBebidasNoAlcoholicas());
                 }
-            }       
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void btnModEmp_Click(object sender, EventArgs e)
         {
-            if(lblTitulo.Text == "Bebida alcoholica")
+            if(lblTitulo.Text == "Bebidas alcoholicas")
             {
                 AdministradorBebidaAlcoholica administrador = new AdministradorBebidaAlcoholica();
                 administrador.RellenarStock();
@@ -115,14 +114,13 @@ namespace Bar
 
         public override void btnAltaEmp_Click(object sender, EventArgs e)
         {
-            if(lblTitulo.Text == "Bebida alcoholica")
+            if(lblTitulo.Text == "Bebidas alcoholicas")
             {
                 FormAltaBebidaAlc formAltaBebidaAlc = new FormAltaBebidaAlc();
                 DialogResult dg = formAltaBebidaAlc.ShowDialog();
                 if (dg == DialogResult.OK)
                 {
                     ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
-
                 }
             }
             else
@@ -132,7 +130,6 @@ namespace Bar
                 if (dg == DialogResult.OK)
                 {
                     ActualizarDatagridNoAlcoholicas(controlador.ObtenerTodasBebidasNoAlcoholicas());
-
                 }
             }
         }

@@ -30,20 +30,26 @@ namespace Bar.Formulario_Clientes
             {
                 cmbBebidaFavorita.Items.Add(estatus);
             }
-           
+
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (controlador.AltaCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex))
+            try
             {
-                MessageBox.Show("Se agrego el cliente correctamente.", "Agregar cliente");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
+                if(!string.IsNullOrEmpty(cmbBebidaFavorita.Text))
+                {
+                    if (controlador.AltaCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex))
+                    {
+                        MessageBox.Show("Se agrego el cliente correctamente.", "Agregar cliente");
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                }   
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo agregar el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
     }

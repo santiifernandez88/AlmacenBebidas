@@ -30,10 +30,21 @@
         {
             SuspendLayout();
             // 
+            // cmbBebidaFavorita
+            // 
+            cmbBebidaFavorita.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBebidaFavorita.Items.AddRange(new object[] { Entidades.Clientes.Estatus.Activo, Entidades.Clientes.Estatus.PocoFrecuente, Entidades.Clientes.Estatus.Inactivo, Entidades.Clientes.Estatus.Activo, Entidades.Clientes.Estatus.PocoFrecuente, Entidades.Clientes.Estatus.Inactivo });
+            // 
             // lblAlta
             // 
             lblAlta.Size = new Size(224, 46);
             lblAlta.Text = "Modificar cliente";
+            // 
+            // lblPuesto
+            // 
+            lblPuesto.Location = new Point(337, 178);
+            lblPuesto.Size = new Size(82, 20);
+            lblPuesto.Text = "Frecuencia:";
             // 
             // FormModificarCliente
             // 

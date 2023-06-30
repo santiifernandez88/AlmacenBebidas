@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entidades.Bebidas
 {
-    public class AdministradorBebidaAlcoholica : IAdministrable<BebidaAlcoholica>, IBebible
+    public class AdministradorBebidaAlcoholica : IAdministrable<BebidaAlcoholica>, IBebible<BebidaAlcoholica>
     {
+        public event delegadoBebida ReservaStock;
+        public event delegadoBebida SinStock;
         public bool CrearBebidaAlcoholica(string marca, string stockStr, string precioStr, string mLitrosStr, string gradoAlcStr, string descripcion, int tipoBebidaIndex)
         {
             bool validado = false;
@@ -18,7 +20,8 @@ namespace Entidades.Bebidas
             int stock;
             TiposBebidasAlcoholicas tipoDeBebida = (TiposBebidasAlcoholicas)tipoBebidaIndex;
 
-            if (!string.IsNullOrEmpty(marca) && float.TryParse(gradoAlcStr, out gradoAlc) && float.TryParse(precioStr, out precio) && int.TryParse(stockStr, out stock) && int.TryParse(mLitrosStr, out mLitros))
+            if(Validaciones.ValidarString(marca) && Validaciones.ValidarString(descripcion) && Validaciones.ValidarFloat(gradoAlcStr, out gradoAlc) 
+               && Validaciones.ValidarFloat(precioStr, out precio) && Validaciones.ValidarEntero(stockStr, out stock) && Validaciones.ValidarEntero(mLitrosStr, out mLitros))
             {
                 BebidaAlcoholica bebidaNueva = new BebidaAlcoholica(marca, stock, precio, mLitros, gradoAlc, descripcion, tipoDeBebida);
                 Agregar(bebidaNueva);
@@ -108,7 +111,26 @@ namespace Entidades.Bebidas
                 if (b.Id == idBebida)
                 {
                     b.Stock--;
+                    //LanzadorEvento(b);
+                    break;
                 }
+            }
+        }
+
+        public void LanzadorEvento(BebidaAlcoholica bebida)
+        {
+            if (bebida.Stock <= 5 && bebida.Stock > 0)
+            {
+                BebidaEventArgs e = new BebidaEventArgs();
+                e.StockRestante = bebida.Stock;
+                ReservaStock(bebida, e);
+            }
+
+            if (bebida.Stock == 0)
+            {
+                BebidaEventArgs e = new BebidaEventArgs();
+                e.StockRestante = bebida.Stock;
+                SinStock(bebida, e);
             }
         }
 

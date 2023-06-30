@@ -24,7 +24,7 @@ namespace Entidades.Empleados
 
         public Empleado(string nombre, string apellido, int edad, int dni, float sueldo, PuestosDeTrabajo puesto) : base(nombre, apellido, edad, dni)
         {
-            id = siguienteId++;
+            this.id = siguienteId++;
             this.sueldo = sueldo;
             this.puesto = puesto;
         }

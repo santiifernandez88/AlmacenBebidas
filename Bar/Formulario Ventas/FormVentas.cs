@@ -66,21 +66,28 @@ namespace Bar
 
         private void btnBorrarVenta_Click(object sender, EventArgs e)
         {
-            int idAEliminar = (int)dtgVentas.Rows[celdaClickeada].Cells[0].Value;
-            //MessageBox.Show(idAEliminar.ToString());
-            DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar una venta?", "Eliminar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dg == DialogResult.Yes)
+            try
             {
-                if (controlador.BajaVenta(idAEliminar))
+                int idAEliminar = (int)dtgVentas.Rows[celdaClickeada].Cells[0].Value;
+                DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar una venta?", "Eliminar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
                 {
-                    MessageBox.Show("Se elimino correctamente la venta", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (controlador.BajaVenta(idAEliminar))
+                    {
+                        MessageBox.Show("Se elimino correctamente la venta", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    ActualizarDatagrid(controlador.ObtenerTodasVentas());
                 }
-                else
-                {
-                    MessageBox.Show("Error, no se pudo eliminar correctamente la venta", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                ActualizarDatagrid(controlador.ObtenerTodasVentas());
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGenerarComprobante_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

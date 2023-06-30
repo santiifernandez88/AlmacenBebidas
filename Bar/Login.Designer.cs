@@ -140,6 +140,7 @@
             // 
             // picAutoLogeo
             // 
+            picAutoLogeo.BackColor = Color.Black;
             picAutoLogeo.BackgroundImageLayout = ImageLayout.Stretch;
             picAutoLogeo.Image = Properties.Resources.Arrroba;
             picAutoLogeo.Location = new Point(885, 12);
@@ -148,6 +149,7 @@
             picAutoLogeo.SizeMode = PictureBoxSizeMode.StretchImage;
             picAutoLogeo.TabIndex = 7;
             picAutoLogeo.TabStop = false;
+            picAutoLogeo.Click += picAutoLogeo_Click;
             // 
             // Login
             // 

@@ -36,6 +36,7 @@
             btnBorrarVenta = new Button();
             lblHistorial = new Label();
             dtgVentas = new DataGridView();
+            btnGenerarComprobante = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgVentas).BeginInit();
             SuspendLayout();
             // 
@@ -93,7 +94,7 @@
             // 
             btnBorrarVenta.BackColor = Color.DarkSlateGray;
             btnBorrarVenta.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            btnBorrarVenta.Location = new Point(35, 372);
+            btnBorrarVenta.Location = new Point(35, 329);
             btnBorrarVenta.Name = "btnBorrarVenta";
             btnBorrarVenta.Size = new Size(218, 101);
             btnBorrarVenta.TabIndex = 7;
@@ -133,6 +134,18 @@
             dtgVentas.TabIndex = 2;
             dtgVentas.CellClick += dtgVentas_CellClick;
             // 
+            // btnGenerarComprobante
+            // 
+            btnGenerarComprobante.BackColor = Color.DarkSlateGray;
+            btnGenerarComprobante.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerarComprobante.Location = new Point(52, 478);
+            btnGenerarComprobante.Name = "btnGenerarComprobante";
+            btnGenerarComprobante.Size = new Size(181, 82);
+            btnGenerarComprobante.TabIndex = 9;
+            btnGenerarComprobante.Text = "Generar comprobante";
+            btnGenerarComprobante.UseVisualStyleBackColor = false;
+            btnGenerarComprobante.Click += btnGenerarComprobante_Click;
+            // 
             // FormVentas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -140,6 +153,7 @@
             BackgroundImage = Properties.Resources.gris;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1338, 697);
+            Controls.Add(btnGenerarComprobante);
             Controls.Add(dtgVentas);
             Controls.Add(lblHistorial);
             Controls.Add(btnBorrarVenta);
@@ -164,5 +178,6 @@
         private Button btnBorrarVenta;
         private Label lblHistorial;
         public DataGridView dtgVentas;
+        private Button btnGenerarComprobante;
     }
 }

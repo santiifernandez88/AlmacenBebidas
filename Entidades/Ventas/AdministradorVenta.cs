@@ -9,8 +9,6 @@ namespace Entidades.Ventas
 {
     public class AdministradorVenta : IAdministrable<Venta>
     {
-        
-
         /// <summary>
         /// 
         /// </summary>
@@ -28,13 +26,13 @@ namespace Entidades.Ventas
         /// <returns></returns>
         public bool Agregar(Venta venta)
         {
-            bool agregado;
-
-            
-            
+            bool agregado = false;
+           
+            if(ValidarEnLista(venta))
+            {
                 BaseDeDatos.GuardarVentas(venta);
                 agregado = true;
-            
+            }
             
             return agregado;
         }
@@ -66,13 +64,13 @@ namespace Entidades.Ventas
         /// <returns></returns>
         public bool ValidarEnLista(Venta venta)
         {
-            bool noEncontrado = false;
+            bool noEncontrado = true;
 
             foreach(Venta v in ObtenerTodos())
             {
                 if(venta.Id == v.Id)
                 {
-                    noEncontrado = true;
+                    noEncontrado = false; 
                     break;
                 }
             }
@@ -120,7 +118,7 @@ namespace Entidades.Ventas
                 Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
                 if (Agregar(ventaNueva))
                 {
-                    administradorBebidaAlcoholica.DescontarStock(idBebida);
+                    administradorBebidasNoAlcoholicas.DescontarStock(idBebida);
                     validado = true;
                 }
             }

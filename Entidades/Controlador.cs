@@ -7,6 +7,7 @@ using Entidades.Clientes;
 using Entidades.Empleados;
 using Entidades.Usuarios;
 using Entidades.Ventas;
+using Data.Serializacion_Archivos;
 
 namespace Entidades
 {
@@ -35,6 +36,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo crear el cliente.");
+            }
 
             return controlado;
         }
@@ -47,6 +52,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo eliminar el cliente.");
+            }
 
             return controlado;
         }
@@ -58,6 +67,10 @@ namespace Entidades
             if(administradorCliente.ModificarCliente(cliente, nombre, apellido, edadStr, dniStr, frecienciaIndex))
             {
                 controlado = true;
+            }
+            else
+            {
+                throw new Exception("No se pudo modificar el cliente.");
             }
 
             return controlado;
@@ -77,6 +90,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo crear el empleado.");
+            }
 
             return controlado;
         }
@@ -89,6 +106,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo elimnar el empleado.");
+            }
 
             return controlado;
         }
@@ -100,6 +121,10 @@ namespace Entidades
             if(administradorEmpleado.ModificarEmpleado(empleado, nombre, apellido, edadStr, dniStr, sueldoStr, puestoIndex))
             {
                 controlado = true;  
+            }
+            else
+            {
+                throw new Exception("No se pudo modificar el empleado.");
             }
 
             return controlado;
@@ -127,6 +152,10 @@ namespace Entidades
             if(administradorUsuario.ValidarUsuario(nombreUsuario, contraseña, out usuarioValidado))
             {
                 controlado = true;
+            }
+            else
+            {
+                throw new Exception("No se pudo validar el usuario.");
             }
 
             return controlado;
@@ -157,6 +186,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo crear la bebida alcoholica.");
+            }
 
             return controlado;
         }
@@ -165,9 +198,13 @@ namespace Entidades
         {
             bool controlado = false;
 
-            if(administradorBebidasNoAlcoholicas.CrearBebidaNoAlcoholica(marca, precioStr, stockStr, descripcion, mLitrosStr, tipoIndex))
+            if(administradorBebidasNoAlcoholicas.CrearBebidaNoAlcoholica(marca, precioStr, stockStr, descripcion, mLitrosStr, tipoIndex, contieneAzucar))
             {
                 controlado = true;
+            }
+            else
+            {
+                throw new Exception("No se pudo crear la bebida no alcoholica.");
             }
 
             return controlado;
@@ -181,6 +218,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo eliminar la bebida alcoholica.");
+            }
 
             return controlado;
         }
@@ -189,23 +230,17 @@ namespace Entidades
         {
             bool controlado = false;
 
-            if (administradorBebidasNoAlcoholicas.Borrar(idAEliminar))
+            if(administradorBebidasNoAlcoholicas.Borrar(idAEliminar))
             {
                 controlado = true;
+            }
+            else
+            {
+                throw new Exception("No se pudo eliminar la bebida alcoholica.");
             }
 
             return controlado;
         }
-
-
-        /*public bool ModificarBebidaAlcoholica()
-        {
-            bool controlado = false;
-
-            if(administradorBebidaAlcoholicas.)
-
-            return controlado;
-        }*/
 
         #endregion
 
@@ -225,6 +260,10 @@ namespace Entidades
             {
                 controlado = true;
             }
+            else
+            {
+                throw new Exception("No se pudo crear la venta.");
+            }
 
             return controlado;
         }
@@ -236,6 +275,10 @@ namespace Entidades
             if (administradorVenta.CrearVenta(metodoInt, dniCliente, idEmpleadoStr, idbebidaUno, idBebidaDos))
             {
                 controlado = true;
+            }
+            else
+            {
+                throw new Exception("No se pudo crear la venta.");
             }
 
             return controlado;
@@ -249,6 +292,10 @@ namespace Entidades
             {
                 controlado = true; 
             }
+            else
+            {
+                throw new Exception("No se pudo eliminar la venta.");
+            }
 
             return controlado;
 
@@ -258,6 +305,13 @@ namespace Entidades
         {
             return administradorVenta.AcumuladorGanancias();
         }
+
+        /*public void GenerarTicket(Venta venta)
+        {
+            SerializadoraPDF pdf = 
+
+
+        }*/
 
         #endregion
     }

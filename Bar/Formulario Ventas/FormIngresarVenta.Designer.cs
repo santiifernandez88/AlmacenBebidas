@@ -67,6 +67,7 @@
             // 
             // cmbMetodoPago
             // 
+            cmbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMetodoPago.FormattingEnabled = true;
             cmbMetodoPago.Location = new Point(588, 106);
             cmbMetodoPago.Name = "cmbMetodoPago";
@@ -142,6 +143,7 @@
             // 
             // cmbBebida
             // 
+            cmbBebida.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBebida.FormattingEnabled = true;
             cmbBebida.Location = new Point(167, 106);
             cmbBebida.Name = "cmbBebida";

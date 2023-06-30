@@ -56,7 +56,7 @@ namespace Bar.Formulario_Empleados
             // 
             // cmbPuesto
             // 
-            cmbPuesto.Items.AddRange(new object[] { PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor });
+            cmbPuesto.Items.AddRange(new object[] { PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor });
             cmbPuesto.Location = new Point(390, 461);
             // 
             // btnCancelar
@@ -86,6 +86,7 @@ namespace Bar.Formulario_Empleados
             // 
             // cmbPuestoTrabajo
             // 
+            cmbPuestoTrabajo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPuestoTrabajo.FormattingEnabled = true;
             cmbPuestoTrabajo.Location = new Point(422, 202);
             cmbPuestoTrabajo.Name = "cmbPuestoTrabajo";

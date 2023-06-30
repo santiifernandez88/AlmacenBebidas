@@ -30,15 +30,21 @@ namespace Bar.Formulario_Inventario
 
         public void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (controlador.AltaBebidaAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtGradoAlc.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex))
+            try
             {
-                MessageBox.Show("Se pudo agregar la bebida al inventario.");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
+                if (!string.IsNullOrEmpty(cmbTipoDeBebida.Text))
+                {
+                    if (controlador.AltaBebidaAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtGradoAlc.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex))
+                    {
+                        MessageBox.Show("Se pudo agregar la bebida al inventario.");
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                }    
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo agregar la bebida al inventario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
 

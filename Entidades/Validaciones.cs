@@ -6,6 +6,43 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    public class NumeroNoValidoException : Exception
+    {
+        public NumeroNoValidoException() : base()
+        {
+        
+        }
+
+        public NumeroNoValidoException(string mensaje) : base(mensaje)
+        {
+
+        }
+
+        public NumeroNoValidoException(string mensaje, Exception innerException) : base(mensaje, innerException)
+        {
+
+        }
+    }
+
+    public class CadenaNoValidaException : Exception
+    {
+        public CadenaNoValidaException() : base() 
+        {
+        
+        }
+
+        public CadenaNoValidaException(string mensaje) : base(mensaje)
+        {
+
+        }
+
+        public CadenaNoValidaException(string mensaje, Exception innerException) : base(mensaje, innerException)
+        {
+
+        }
+    }
+
+
     public class Validaciones
     {
         public static bool ValidarString(string cadena)
@@ -22,87 +59,82 @@ namespace Entidades
                     }
                     else
                     {
-                        throw new Exception("Error, ingrese solamente letreas.");
+                        throw new CadenaNoValidaException("Error, ingrese solamente letreas.");
                     }
                 }
             }
             else
             {
-                throw new ArgumentNullException(nameof(cadena));
+                throw new ArgumentNullException(nameof(cadena), "Ingrese una palabra o letra.");
             }
 
             return validado; 
         }
 
-        public static bool ValidarEntero(string enteroStr, int entero)
+        public static bool ValidarEntero(string enteroStr, out int entero)
         {
             bool validado = false;
+            int aux;
 
             if(!string.IsNullOrEmpty(enteroStr))
             {
-                for(int i = 0; i < enteroStr.Length; i++)
+                if (int.TryParse(enteroStr, out aux))
                 {
-                    if(int.TryParse(enteroStr, out entero))
+                    if (aux >= 0)
                     {
-                        if(entero >= 0)
-                        {
-                            validado = true;
-                        }
-                        else
-                        {
-                            throw new Exception("Ingrese un numero que sea 0 o mayor al mismo.");
-                        }
+                        entero = aux;
+                        validado = true;
                     }
                     else
                     {
-                        throw new FormatException("Ingrese un numero por favor.");
+                        throw new NumeroNoValidoException("Ingrese un numero que sea 0 o mayor al mismo.");
                     }
-                }                
+                }
+                else
+                {
+                    throw new FormatException("Ingrese un numero por favor.");
+                }
             }
             else
             {
-                throw new ArgumentNullException(nameof(enteroStr));
+                throw new ArgumentNullException(nameof(enteroStr), "Ingrese un numero");
             }
 
             return validado;
         }
 
 
-       /* public static bool ValidarFloat(string flotanteStr, out float flotante)
+        public static bool ValidarFloat(string flotanteStr, out float flotante)
         {
             bool validado = false;
-            float f;
+            float aux;
 
             if (!string.IsNullOrEmpty(flotanteStr))
-            {
-                for (int i = 0; i < flotanteStr.Length; i++)
+            { 
+                if (float.TryParse(flotanteStr, out aux))
                 {
-                    if (float.TryParse(flotanteStr, out flotante))
+                    if (aux >= 0)
                     {
-                        if (flotante >= 0)
-                        {
-                            f = flotante;
-
-                            validado = true;
-                        }
-                        else
-                        {
-                            throw new Exception("Ingrese un numero que sea 0 o mayor al mismo.");
-                        }
+                        flotante = aux;
+                        validado = true;
                     }
                     else
                     {
-                        throw new FormatException("Ingrese un numero por favor.");
+                        throw new NumeroNoValidoException("Ingrese un numero que sea 0 o mayor al mismo.");
                     }
+                }
+                else
+                {
+                    throw new FormatException("Ingrese un numero por favor.");
                 }
             }
             else
             {
-                throw new ArgumentNullException(nameof(flotanteStr));
+                throw new ArgumentNullException(nameof(flotanteStr), "Ingrese un numero.");
             }
 
             return validado;
-        }*/
+        }
 
     }
 }

@@ -33,16 +33,22 @@ namespace Bar.Formulario_Clientes
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (controlador.ModificarCliente(cliente, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, (int)cmbBebidaFavorita.SelectedIndex))
+            try
             {
-                MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
+                if (!string.IsNullOrEmpty(cmbBebidaFavorita.Text))
+                {
+                    if (controlador.ModificarCliente(cliente, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, (int)cmbBebidaFavorita.SelectedIndex))
+                    {
+                        MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                }  
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo modificar el empleado porque ya existe este empleado, acuerdese que cada empleado tiene una id unica y dni unico", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
-        }        
+        }
     }
 }

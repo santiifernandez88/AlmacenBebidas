@@ -67,20 +67,23 @@ namespace Bar.Formulario_Clientes
 
         public override void btnBajaEmp_Click(object sender, EventArgs e)
         {
-            int dniAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[4].Value;
-            DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dg == DialogResult.Yes)
+            try
             {
-                if (controlador.BajaCliente(dniAEliminar))
+                int dniAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[4].Value;
+                DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
                 {
-                    MessageBox.Show("Se elimino correctamente al cliente");
+                    if (controlador.BajaCliente(dniAEliminar))
+                    {
+                        MessageBox.Show("Se elimino correctamente al cliente");
+                    }
+                    ActualizarDatagrid(controlador.ObtenerTodosClientes());
                 }
-                else
-                {
-                    MessageBox.Show("Error, no se pudo eliminar correctamente el cliente", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                ActualizarDatagrid(controlador.ObtenerTodosClientes());
             }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }    
         }
 
         public override void btnModEmp_Click(object sender, EventArgs e)

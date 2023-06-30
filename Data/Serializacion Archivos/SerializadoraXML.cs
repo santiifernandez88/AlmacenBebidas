@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Data
 {
-    public class SerializadoraXML<T>
+   /* public class SerializadoraXML<T>
     {
         private string pathfile;
 
@@ -50,5 +50,5 @@ namespace Data
                 Console.WriteLine(ex.Message);
             }
         }
-    }
+    }*/
 }

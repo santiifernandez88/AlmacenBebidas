@@ -50,9 +50,9 @@ namespace Bar.Formulario_Clientes
             // 
             // lblPuesto
             // 
-            lblPuesto.Location = new Point(317, 178);
-            lblPuesto.Size = new Size(114, 20);
-            lblPuesto.Text = "Bebida favorita:";
+            lblPuesto.Location = new Point(337, 178);
+            lblPuesto.Size = new Size(82, 20);
+            lblPuesto.Text = "Frecuencia:";
             // 
             // txtDni
             // 
@@ -74,7 +74,7 @@ namespace Bar.Formulario_Clientes
             // 
             // cmbPuesto
             // 
-            cmbPuesto.Items.AddRange(new object[] { PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor });
+            cmbPuesto.Items.AddRange(new object[] { PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor, PuestosDeTrabajo.Jefe, PuestosDeTrabajo.Encargado, PuestosDeTrabajo.Vendedor });
             cmbPuesto.Location = new Point(577, 572);
             cmbPuesto.Size = new Size(181, 28);
             cmbPuesto.Visible = false;
@@ -111,6 +111,7 @@ namespace Bar.Formulario_Clientes
             // 
             // cmbBebidaFavorita
             // 
+            cmbBebidaFavorita.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBebidaFavorita.FormattingEnabled = true;
             cmbBebidaFavorita.Location = new Point(437, 175);
             cmbBebidaFavorita.Name = "cmbBebidaFavorita";

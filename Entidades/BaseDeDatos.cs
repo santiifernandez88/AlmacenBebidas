@@ -157,7 +157,7 @@ namespace Entidades
   
         private static void HardcodearBebidasNoAlcoholicas(List<BebidaNoAlcoholica> bebidaNoAlcoholicas)
         {
-            bebidaNoAlcoholicas.Add(new BebidaNoAlcoholica("Coca Cola", 500, 25, "Coca cola Light", 2500, TiposBebidasNoAlc.Gaseosa, false));
+            bebidaNoAlcoholicas.Add(new BebidaNoAlcoholica("Coca Cola", 500, 6, "Coca cola Light", 2500, TiposBebidasNoAlc.Gaseosa, false));
             bebidaNoAlcoholicas.Add(new BebidaNoAlcoholica("Sprite", 470, 25, "Gaseosa lima limon", 2500, TiposBebidasNoAlc.Gaseosa, true));
             bebidaNoAlcoholicas.Add(new BebidaNoAlcoholica("Fanta", 420, 25, "Gaseosa de naranja", 2500, TiposBebidasNoAlc.Gaseosa, true));
             bebidaNoAlcoholicas.Add(new BebidaNoAlcoholica("Paso de los toros", 400, 25, "Agua tonica", 1500, TiposBebidasNoAlc.Gaseosa, false));

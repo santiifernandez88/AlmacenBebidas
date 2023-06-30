@@ -23,24 +23,30 @@ namespace Bar.Formulario_Empleados
         private void FormAlta_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
-            
-            foreach(var puesto in Enum.GetValues(typeof(PuestosDeTrabajo)))
+
+            foreach (var puesto in Enum.GetValues(typeof(PuestosDeTrabajo)))
             {
                 cmbPuesto.Items.Add(puesto);
-            }                                  
+            }
         }
 
         public virtual void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (controlador.AltaEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex))
+            try
             {
-                MessageBox.Show("Se pudo crear correctamente el empleado.");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
+                if(!string.IsNullOrEmpty(cmbPuesto.Text))
+                {
+                    if(controlador.AltaEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex))
+                    {
+                        MessageBox.Show("Se pudo crear correctamente el empleado.");
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo crear correctamente el empleado");
+                MessageBox.Show(ex.Message);
             }
         }
 

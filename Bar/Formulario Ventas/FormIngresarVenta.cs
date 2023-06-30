@@ -21,6 +21,8 @@ namespace Bar.Formulario_Ventas
         Usuario usuario;
         BebidaAlcoholica bebidaUno;
         BebidaNoAlcoholica bebidaDos;
+        AdministradorBebidaAlcoholica admB1 = new AdministradorBebidaAlcoholica();
+        AdministradorBebidasNoAlcoholicas admB2 = new AdministradorBebidasNoAlcoholicas();
 
         public FormIngresarVenta(Usuario usuario)
         {
@@ -40,6 +42,8 @@ namespace Bar.Formulario_Ventas
             cmbBebida.Items.Add("Bebida alcoholica");
             cmbBebida.Items.Add("Bebida no alcoholica");
             cmbBebida.Items.Add("Combo");
+
+
 
             ConfigurarListBoxClientes(controlador.ObtenerTodosClientes());
 
@@ -69,44 +73,52 @@ namespace Bar.Formulario_Ventas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)lstCliente.SelectedItem;
-            ValidarBebida(cliente.Dni);
-        }
-
-        private void ValidarBebida(int dniARetornar)
-        {
-            if ((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
+            try 
             {
-                Bebida bebida = (Bebida)lstBebidas.SelectedItem;
-                if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebida.Id, dniARetornar, this.usuario.Empleado.Id))
+                Cliente cliente = (Cliente)lstCliente.SelectedItem;
+                if ((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
                 {
-                    MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Hide();
+                    Bebida bebida = (Bebida)lstBebidas.SelectedItem;
+                    /*admB1.ReservaStock += ManejadorReservaStock;
+                    admB1.SinStock += ManejadorSinStock;
+                    admB2.ReservaStock += ManejadorReservaStock;
+                    admB2.SinStock += ManejadorSinStock;*/
+                    if(!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
+                    {
+                        if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebida.Id, cliente.Dni, this.usuario.Empleado.Id))
+                        {
+                            MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
+                            this.DialogResult = DialogResult.OK;
+                            this.Hide();
+                        }
+                    }
+                   
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo añadir la venta al historial estoy en bebida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    if ((string)cmbBebida.SelectedItem == "Combo")
+                    {
+                        /* admB1.ReservaStock += ManejadorReservaStock;
+                         admB1.SinStock += ManejadorSinStock;
+                         admB2.ReservaStock += ManejadorReservaStock;
+                         admB2.SinStock += ManejadorSinStock;*/
+                        if (!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
+                        {
+                            if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebidaUno.Id, bebidaDos.Id, cliente.Dni, this.usuario.Empleado.Id))
+                            {
+                                MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
+                                //this.DialogResult = DialogResult.OK;
+                                this.Hide();
+                            }
+                        }                          
+                    }
                 }
             }
-            else
+            catch(Exception ex)
             {
-                if ((string)cmbBebida.SelectedItem == "Combo")
-                {
-                    //aca lo utilizo
-                    if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebidaUno.Id, bebidaDos.Id, dniARetornar, this.usuario.Empleado.Id))
-                    {
-                        MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo añadir la venta al historial estoy en combo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+           
         }
 
         public void ConfigurarListBoxClientes(List<Cliente> clientes)
@@ -191,10 +203,28 @@ namespace Bar.Formulario_Ventas
         }
 
         private void ElegirBebidaDos(object sender, EventArgs e)
-        {        
+        {
             bebidaDos = (BebidaNoAlcoholica)lstBebidas.SelectedItem;
             lblCombo.Text += "\n" + bebidaDos.ToString();
             this.btnAplicar.Click -= ElegirBebidaDos;
+        }
+
+        private void ManejadorReservaStock(object sender, BebidaEventArgs e)
+        {
+            DialogResult dg = MessageBox.Show($"La bebida {((Bebida)sender).Marca} se esta quedando sin stock, desea rellenar el stock?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dg == DialogResult.Yes)
+            {
+                ((Bebida)sender).Stock = 25;
+            }
+        }
+
+        private void ManejadorSinStock(object sender, BebidaEventArgs e)
+        {
+            DialogResult dg = MessageBox.Show($"La bebida {((Bebida)sender).Marca} se quedó sin stock, desea rellenar el stock?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dg == DialogResult.Yes)
+            {
+                ((Bebida)sender).Stock = 25;
+            }
         }
 
     }

@@ -26,38 +26,40 @@ namespace Bar.Formulario_Inventario
             {
                 cmbTipoDeBebida.Items.Add(tipo);
             }
-            
+
             cmbContieneAzuc.Items.Add("Falso");
-            cmbContieneAzuc.Items.Add("Verdadero");          
+            cmbContieneAzuc.Items.Add("Verdadero");
         }
 
         public void btnAceptar_Click(object sender, EventArgs e)
         {
-            if(cmbContieneAzuc.Text == "Verdadero")
+            try
             {
-                if (controlador.AltaBebidaNoAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex, true))
+                if(!string.IsNullOrEmpty(cmbTipoDeBebida.Text) && !string.IsNullOrEmpty(cmbContieneAzuc.Text))
                 {
-                    MessageBox.Show("Se pudo agregar la bebida al inventario.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo agregar la bebida al inventario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (cmbContieneAzuc.Text == "Verdadero")
+                    {
+                        if (controlador.AltaBebidaNoAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex, true))
+                        {
+                            MessageBox.Show("Se pudo agregar la bebida al inventario.");
+                            this.DialogResult = DialogResult.OK;
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        if (controlador.AltaBebidaNoAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex, false) && !string.IsNullOrEmpty(cmbTipoDeBebida.Text) && !string.IsNullOrEmpty(cmbContieneAzuc.Text))
+                        {
+                            MessageBox.Show("Se pudo agregar la bebida al inventario.");
+                            this.DialogResult = DialogResult.OK;
+                            this.Hide();
+                        }
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                if (controlador.AltaBebidaNoAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex, false))
-                {
-                    MessageBox.Show("Se pudo agregar la bebida al inventario.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo agregar la bebida al inventario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 

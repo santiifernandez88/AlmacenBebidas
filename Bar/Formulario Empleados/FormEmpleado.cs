@@ -73,20 +73,23 @@ namespace Bar.Formulario_Empleados
 
         public virtual void btnBajaEmp_Click(object sender, EventArgs e)
         {
-            int idAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[0].Value;
-            DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un empleado?", "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dg == DialogResult.Yes)
+            try
             {
-                if (controlador.BajaEmpleado(idAEliminar))
+                int idAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[0].Value;
+                DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un empleado?", "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
                 {
-                    MessageBox.Show("Se elimino correctamente al empleado");
+                    if (controlador.BajaEmpleado(idAEliminar))
+                    {
+                        MessageBox.Show("Se elimino correctamente al empleado");
+                    }
+                    ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
                 }
-                else
-                {
-                    MessageBox.Show("Error, no se pudo eliminar correctamente al empleado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
             }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
 
@@ -104,9 +107,6 @@ namespace Bar.Formulario_Empleados
                     ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
                 }
             }
-
         }
-
-
     }
 }

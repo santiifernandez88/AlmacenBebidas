@@ -172,6 +172,7 @@
             // 
             // cmbTipoDeBebida
             // 
+            cmbTipoDeBebida.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoDeBebida.FormattingEnabled = true;
             cmbTipoDeBebida.Location = new Point(505, 241);
             cmbTipoDeBebida.Name = "cmbTipoDeBebida";

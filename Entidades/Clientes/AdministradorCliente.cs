@@ -24,7 +24,7 @@ namespace Entidades.Clientes
             int dni;
             Estatus frecuencia = (Estatus)frecuenciaIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && int.TryParse(edadStr, out edad) && int.TryParse(dniStr, out dni))
+            if (Validaciones.ValidarString(nombre) && Validaciones.ValidarString(apellido) && Validaciones.ValidarEntero(edadStr, out edad) && Validaciones.ValidarEntero(dniStr, out dni))
             {
                 Cliente clienteNuevo = new Cliente(nombre, apellido, edad, dni, frecuencia);
                 if (Agregar(clienteNuevo))
@@ -51,7 +51,7 @@ namespace Entidades.Clientes
             int dni;
             Estatus frecuencia = (Estatus)frecuenciaIndex;
 
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && int.TryParse(edadStr, out edad) && int.TryParse(dniStr, out dni))
+            if (Validaciones.ValidarString(nombre) && Validaciones.ValidarString(apellido) && Validaciones.ValidarEntero(edadStr, out edad) && Validaciones.ValidarEntero(dniStr, out dni))
             {
                 Cliente clienteModificado = new Cliente(nombre, apellido, edad, dni, frecuencia);
 
