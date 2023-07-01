@@ -73,10 +73,8 @@ namespace Bar.Formulario_Clientes
                 DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
-                    if (controlador.BajaCliente(dniAEliminar))
-                    {
-                        MessageBox.Show("Se elimino correctamente al cliente");
-                    }
+                    controlador.BajaCliente(dniAEliminar);
+                    MessageBox.Show("Se elimino correctamente al cliente");
                     ActualizarDatagrid(controlador.ObtenerTodosClientes());
                 }
             }

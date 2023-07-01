@@ -17,12 +17,10 @@ namespace Bar
         {
             try
             {
-                if (controlador.ValidarUsuario(txt_NombreUsuario.Text, txt_Contraseña.Text, out usuario))
-                {
-                    MenuPrincipal menuPrincipal = new MenuPrincipal(usuario);
-                    menuPrincipal.Show();
-                    this.Hide();
-                }
+                controlador.ValidarUsuario(txt_NombreUsuario.Text, txt_Contraseña.Text, out usuario);
+                MenuPrincipal menuPrincipal = new MenuPrincipal(usuario);
+                menuPrincipal.Show();
+                this.Hide();
             }
             catch(Exception ex)
             {

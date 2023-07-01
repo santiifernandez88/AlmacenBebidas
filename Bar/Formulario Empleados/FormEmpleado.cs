@@ -79,10 +79,8 @@ namespace Bar.Formulario_Empleados
                 DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un empleado?", "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
-                    if (controlador.BajaEmpleado(idAEliminar))
-                    {
-                        MessageBox.Show("Se elimino correctamente al empleado");
-                    }
+                    controlador.BajaEmpleado(idAEliminar);
+                    MessageBox.Show("Se elimino correctamente al empleado");
                     ActualizarDatagrid(controlador.ObtenerTodosEmpleados());
                 }
             }

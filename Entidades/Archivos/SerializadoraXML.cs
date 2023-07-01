@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Data
+namespace Entidades.Archivos
 {
-   /* public class SerializadoraXML<T>
+    public class SerializadoraXML
     {
-        private string pathfile;
+        /*private string pathfile;
 
         public SerializadoraXML(string pathfile)
         {
@@ -49,6 +49,6 @@ namespace Data
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-    }*/
+        }*/
+    }
 }

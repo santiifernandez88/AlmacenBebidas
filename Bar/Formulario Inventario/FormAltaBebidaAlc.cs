@@ -34,12 +34,10 @@ namespace Bar.Formulario_Inventario
             {
                 if (!string.IsNullOrEmpty(cmbTipoDeBebida.Text))
                 {
-                    if (controlador.AltaBebidaAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtGradoAlc.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex))
-                    {
-                        MessageBox.Show("Se pudo agregar la bebida al inventario.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Hide();
-                    }
+                    controlador.AltaBebidaAlcoholica(txtMarca.Text, txtStock.Text, txtPrecio.Text, txtMLitros.Text, txtGradoAlc.Text, txtDescripcion.Text, cmbTipoDeBebida.SelectedIndex);
+                    MessageBox.Show("Se pudo agregar la bebida al inventario.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Hide();
                 }    
             }
             catch (Exception ex)

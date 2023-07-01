@@ -39,12 +39,10 @@ namespace Bar.Formulario_Clientes
             {
                 if(!string.IsNullOrEmpty(cmbBebidaFavorita.Text))
                 {
-                    if (controlador.AltaCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex))
-                    {
-                        MessageBox.Show("Se agrego el cliente correctamente.", "Agregar cliente");
-                        this.DialogResult = DialogResult.OK;
-                        this.Hide();
-                    }
+                    controlador.AltaCliente(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, cmbBebidaFavorita.SelectedIndex);
+                    MessageBox.Show("Se agrego el cliente correctamente.", "Agregar cliente");
+                    this.DialogResult = DialogResult.OK;
+                    this.Hide();
                 }   
             }
             catch (Exception ex)

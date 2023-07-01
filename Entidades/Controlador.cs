@@ -7,7 +7,7 @@ using Entidades.Clientes;
 using Entidades.Empleados;
 using Entidades.Usuarios;
 using Entidades.Ventas;
-using Data.Serializacion_Archivos;
+using Entidades.Archivos;
 
 namespace Entidades
 {
@@ -28,52 +28,28 @@ namespace Entidades
         }
 
 
-        public bool AltaCliente(string nombre, string apellido, string edadStr, string dniStr, int frecuenciaIndex)
-        {
-            bool controlado = false;
-
-            if(administradorCliente.CrearCliente(nombre, apellido, edadStr, dniStr, frecuenciaIndex))
-            {
-                controlado = true;
-            }
-            else
+        public void AltaCliente(string nombre, string apellido, string edadStr, string dniStr, int frecuenciaIndex)
+        {       
+            if(!administradorCliente.CrearCliente(nombre, apellido, edadStr, dniStr, frecuenciaIndex))
             {
                 throw new Exception("No se pudo crear el cliente.");
             }
-
-            return controlado;
         }
        
-        public bool BajaCliente(int idAEliminar)
+        public void BajaCliente(int idAEliminar)
         {
-            bool controlado = false;
-
-            if(administradorCliente.Borrar(idAEliminar))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorCliente.Borrar(idAEliminar))
             {
                 throw new Exception("No se pudo eliminar el cliente.");
             }
-
-            return controlado;
         }
 
-        public bool ModificarCliente(Cliente cliente, string nombre, string apellido, string edadStr, string dniStr, int frecienciaIndex)
+        public void ModificarCliente(Cliente cliente, string nombre, string apellido, string edadStr, string dniStr, int frecienciaIndex)
         {
-            bool controlado = false;
-
-            if(administradorCliente.ModificarCliente(cliente, nombre, apellido, edadStr, dniStr, frecienciaIndex))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorCliente.ModificarCliente(cliente, nombre, apellido, edadStr, dniStr, frecienciaIndex))
             {
                 throw new Exception("No se pudo modificar el cliente.");
             }
-
-            return controlado;
         }
 
         #endregion
@@ -82,52 +58,28 @@ namespace Entidades
         #region Empleados
         AdministradorEmpleado administradorEmpleado = new AdministradorEmpleado();
 
-        public bool AltaEmpleado(string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, string nombreUsuario, string contraseña, int puestoIndex)
+        public void AltaEmpleado(string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, string nombreUsuario, string contraseña, int puestoIndex)
         {
-            bool controlado = false;
-
-            if(administradorEmpleado.CrearEmpleado(nombre, apellido, edadStr, dniStr, sueldoStr, nombreUsuario, contraseña, puestoIndex))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorEmpleado.CrearEmpleado(nombre, apellido, edadStr, dniStr, sueldoStr, nombreUsuario, contraseña, puestoIndex))
             {
                 throw new Exception("No se pudo crear el empleado.");
             }
-
-            return controlado;
         }
 
-        public bool BajaEmpleado(int idAEliminar)
+        public void BajaEmpleado(int idAEliminar)
         {
-            bool controlado = false;
-
-            if(administradorEmpleado.Borrar(idAEliminar))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorEmpleado.Borrar(idAEliminar))
             {
                 throw new Exception("No se pudo elimnar el empleado.");
             }
-
-            return controlado;
         }
 
-        public bool ModificarEmpleado(Empleado empleado, string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, int puestoIndex)
+        public void ModificarEmpleado(Empleado empleado, string nombre, string apellido, string edadStr, string dniStr, string sueldoStr, int puestoIndex)
         {
-            bool controlado = false;
-
-            if(administradorEmpleado.ModificarEmpleado(empleado, nombre, apellido, edadStr, dniStr, sueldoStr, puestoIndex))
-            {
-                controlado = true;  
-            }
-            else
+            if(!administradorEmpleado.ModificarEmpleado(empleado, nombre, apellido, edadStr, dniStr, sueldoStr, puestoIndex))
             {
                 throw new Exception("No se pudo modificar el empleado.");
             }
-
-            return controlado;
         }
 
         public List<Empleado> ObtenerTodosEmpleados() 
@@ -145,20 +97,12 @@ namespace Entidades
         #region Usuarios
         AdministradorUsuario administradorUsuario = new AdministradorUsuario();
 
-        public bool ValidarUsuario(string nombreUsuario, string contraseña, out Usuario usuarioValidado)
+        public void ValidarUsuario(string nombreUsuario, string contraseña, out Usuario usuarioValidado)
         {
-            bool controlado = false;  
-
-            if(administradorUsuario.ValidarUsuario(nombreUsuario, contraseña, out usuarioValidado))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorUsuario.ValidarUsuario(nombreUsuario, contraseña, out usuarioValidado))
             {
                 throw new Exception("No se pudo validar el usuario.");
             }
-
-            return controlado;
         }
 
         #endregion
@@ -178,68 +122,36 @@ namespace Entidades
             return administradorBebidasNoAlcoholicas.ObtenerTodos();
         }
 
-        public bool AltaBebidaAlcoholica(string marca, string stockStr, string precioStr, string mLitrosStr, string gradoAlcStr, string descripcion, int tipoIndex)
+        public void AltaBebidaAlcoholica(string marca, string stockStr, string precioStr, string mLitrosStr, string gradoAlcStr, string descripcion, int tipoIndex)
         {
-            bool controlado = false;
-
-            if(administradorBebidaAlcoholicas.CrearBebidaAlcoholica(marca, stockStr, precioStr, mLitrosStr, gradoAlcStr, descripcion, tipoIndex))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorBebidaAlcoholicas.CrearBebidaAlcoholica(marca, stockStr, precioStr, mLitrosStr, gradoAlcStr, descripcion, tipoIndex))
             {
                 throw new Exception("No se pudo crear la bebida alcoholica.");
             }
-
-            return controlado;
         }
 
-        public bool AltaBebidaNoAlcoholica(string marca, string stockStr, string precioStr, string mLitrosStr, string descripcion, int tipoIndex, bool contieneAzucar)
+        public void AltaBebidaNoAlcoholica(string marca, string stockStr, string precioStr, string mLitrosStr, string descripcion, int tipoIndex, bool contieneAzucar)
         {
-            bool controlado = false;
-
-            if(administradorBebidasNoAlcoholicas.CrearBebidaNoAlcoholica(marca, precioStr, stockStr, descripcion, mLitrosStr, tipoIndex, contieneAzucar))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorBebidasNoAlcoholicas.CrearBebidaNoAlcoholica(marca, precioStr, stockStr, descripcion, mLitrosStr, tipoIndex, contieneAzucar))
             {
                 throw new Exception("No se pudo crear la bebida no alcoholica.");
             }
-
-            return controlado;
         }
 
-        public bool BajaBebidaAlcoholica(int idAEliminar)
+        public void BajaBebidaAlcoholica(int idAEliminar)
         {
-            bool controlado = false;
-
-            if(administradorBebidaAlcoholicas.Borrar(idAEliminar))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorBebidaAlcoholicas.Borrar(idAEliminar))
             {
                 throw new Exception("No se pudo eliminar la bebida alcoholica.");
             }
-
-            return controlado;
         }
 
-        public bool BajaBebidaNoAlcoholica(int idAEliminar)
+        public void BajaBebidaNoAlcoholica(int idAEliminar)
         {
-            bool controlado = false;
-
-            if(administradorBebidasNoAlcoholicas.Borrar(idAEliminar))
-            {
-                controlado = true;
-            }
-            else
+            if(!administradorBebidasNoAlcoholicas.Borrar(idAEliminar))
             {
                 throw new Exception("No se pudo eliminar la bebida alcoholica.");
-            }
-
-            return controlado;
+            }  
         }
 
         #endregion
@@ -252,53 +164,30 @@ namespace Entidades
             return administradorVenta.ObtenerTodos();
         }
 
-        public bool AltaVenta(int metodoInt, int bebidaId, int dniCliente, int idEmpleado)
+        public void AltaVenta(int metodoInt, int bebidaId, int dniCliente, int idEmpleado)
         {
-            bool controlado = false;
-
-            if(administradorVenta.CrearVenta(metodoInt, bebidaId, dniCliente, idEmpleado))
+            if(!administradorVenta.CrearVenta(metodoInt, bebidaId, dniCliente, idEmpleado))
             {
-                controlado = true;
+                throw new Exception("No se pudo crear la venta.");
             }
-            else
+        }
+
+        public void AltaVenta(int metodoInt, int idbebidaUno, int idBebidaDos, int dniCliente, int idEmpleadoStr)
+        { 
+            if(!administradorVenta.CrearVenta(metodoInt, dniCliente, idEmpleadoStr, idbebidaUno, idBebidaDos))
             {
                 throw new Exception("No se pudo crear la venta.");
             }
 
-            return controlado;
+ 
         }
 
-        public bool AltaVenta(int metodoInt, int idbebidaUno, int idBebidaDos, int dniCliente, int idEmpleadoStr)
+        public void BajaVenta(int idAEliminar) 
         {
-            bool controlado = false;
-
-            if (administradorVenta.CrearVenta(metodoInt, dniCliente, idEmpleadoStr, idbebidaUno, idBebidaDos))
-            {
-                controlado = true;
-            }
-            else
-            {
-                throw new Exception("No se pudo crear la venta.");
-            }
-
-            return controlado;
-        }
-
-        public bool BajaVenta(int idAEliminar) 
-        {
-            bool controlado = false;
-
-            if(administradorVenta.Borrar(idAEliminar))
-            {
-                controlado = true; 
-            }
-            else
+            if(!administradorVenta.Borrar(idAEliminar))
             {
                 throw new Exception("No se pudo eliminar la venta.");
             }
-
-            return controlado;
-
         }
 
         public float AcumuladorGanancias()
@@ -306,12 +195,60 @@ namespace Entidades
             return administradorVenta.AcumuladorGanancias();
         }
 
-        /*public void GenerarTicket(Venta venta)
+        public void GenerarTicket(Venta venta) // Proyecto de data dentro del de entidades como una carpeta
         {
-            SerializadoraPDF pdf = 
+            SerializadoraPDF pdf = new SerializadoraPDF();
+            SerializadoraTXT txt = new SerializadoraTXT();
+            
+            string pathTxt = Environment.CurrentDirectory + $@"/Archivos/Tickets/NumeroTicket.txt";
+            string numeroTicketStr = txt.Leer(pathTxt);
+            int numeroTicket;
 
+            if(Validaciones.ValidarEntero(numeroTicketStr, out numeroTicket))
+            {
+                Ticket ticket = new Ticket(venta, numeroTicket);
+                string pathPdf = Environment.CurrentDirectory + $@"/Archivos/Tickets/ticket{ticket.Id}.pdf";
+                Bebida bebida = TraerBebidaPorId(venta.IdBebida);
+                Bebida bebidaUnoCombo = TraerBebidaPorId(venta.IdBebidaUnoCombo);
+                Bebida bebidaDosCombo = TraerBebidaPorId(venta.IdBebidaDosCombo);
+                pdf.GenerarTicket(pathPdf, ticket, bebida, bebidaUnoCombo, bebidaDosCombo);     
+            }
+        }
 
-        }*/
+        public Venta TraerVentaId(int id)
+        {
+            if(administradorVenta.TraerVentaId(id) is null)
+            {
+                throw new Exception("No se encontro ninguna venta.");
+            }
+            else
+            {
+                return administradorVenta.TraerVentaId((int)id);
+            }    
+        }
+
+        public Bebida TraerBebidaPorId(int id)
+        {
+            Bebida bebida = null;
+            foreach(BebidaAlcoholica bebidaAlcoholica in ObtenerTodasBebidasAlcoholicas())
+            {
+                if(bebidaAlcoholica.Id == id)
+                {
+                    bebida = bebidaAlcoholica;
+                    break;
+                }
+            }
+
+            foreach(BebidaNoAlcoholica bebidaNoAlcoholica in ObtenerTodasBebidasNoAlcoholicas())
+            {
+                if(bebidaNoAlcoholica.Id == id)
+                {
+                    bebida = bebidaNoAlcoholica;
+                    break;
+                }
+            }
+            return bebida;
+        }
 
         #endregion
     }

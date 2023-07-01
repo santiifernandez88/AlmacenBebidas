@@ -72,10 +72,8 @@ namespace Bar
                 DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar una venta?", "Eliminar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
-                    if (controlador.BajaVenta(idAEliminar))
-                    {
-                        MessageBox.Show("Se elimino correctamente la venta", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    controlador.BajaVenta(idAEliminar);
+                    MessageBox.Show("Se elimino correctamente la venta", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarDatagrid(controlador.ObtenerTodasVentas());
                 }
             }
@@ -87,7 +85,17 @@ namespace Bar
 
         private void btnGenerarComprobante_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int id = (int)dtgVentas.Rows[celdaClickeada].Cells[0].Value;
+                Venta venta = controlador.TraerVentaId(id);
+                controlador.GenerarTicket(venta);
+                MessageBox.Show("Comprobante generado", "Comprobante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

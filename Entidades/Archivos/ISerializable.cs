@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Serializacion_Archivos
+namespace Entidades.Archivos
 {
-    internal interface ISerializable<T>
+    public interface ISerializable<T>
     {
-        public bool Escribir(T objeto, string path);
+        public void Escribir(T objeto, string path);
 
 
         public T Leer(string path);

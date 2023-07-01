@@ -143,5 +143,22 @@ namespace Entidades.Ventas
 
             return validado;
         }
+
+        public Venta TraerVentaId(int id)
+        {
+            Venta venta = null;
+
+            foreach(Venta v in ObtenerTodos())
+            {
+                if(v.Id == id)
+                {
+                    venta = v;
+                    break;
+                }
+            }
+
+            return venta;
+        }
+
     }
 }

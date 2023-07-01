@@ -74,19 +74,15 @@ namespace Bar
                 {
                     if (lblTitulo.Text == "Bebidas alcoholicas")
                     {
-                        if (controlador.BajaBebidaAlcoholica(idAEliminar))
-                        {
-                            MessageBox.Show("Se elimino correctamente la bebida");
-                            ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
-                        }
+                        controlador.BajaBebidaAlcoholica(idAEliminar);
+                        MessageBox.Show("Se elimino correctamente la bebida");
+                        ActualizarDatagridAlcoholicas(controlador.ObtenerTodasBebidasAlcoholicas());
                     }
                     else
                     {
-                        if (controlador.BajaBebidaNoAlcoholica(idAEliminar))
-                        {
-                            MessageBox.Show("Se elimino correctamente la bebida");
-                            ActualizarDatagridNoAlcoholicas(controlador.ObtenerTodasBebidasNoAlcoholicas());
-                        }
+                        controlador.BajaBebidaNoAlcoholica(idAEliminar);
+                        MessageBox.Show("Se elimino correctamente la bebida");
+                        ActualizarDatagridNoAlcoholicas(controlador.ObtenerTodasBebidasNoAlcoholicas());
                     }
                 }
             }

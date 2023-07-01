@@ -36,12 +36,10 @@ namespace Bar.Formulario_Empleados
             {
                 if(!string.IsNullOrEmpty(cmbPuesto.Text))
                 {
-                    if(controlador.AltaEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex))
-                    {
-                        MessageBox.Show("Se pudo crear correctamente el empleado.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Hide();
-                    }
+                    controlador.AltaEmpleado(txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, txtNombreUsuario.Text, txtContraseña.Text, cmbPuesto.SelectedIndex);
+                    MessageBox.Show("Se pudo crear correctamente el empleado.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Hide();
                 }
             }
             catch (Exception ex)

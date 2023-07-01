@@ -37,12 +37,10 @@ namespace Bar.Formulario_Clientes
             {
                 if (!string.IsNullOrEmpty(cmbBebidaFavorita.Text))
                 {
-                    if (controlador.ModificarCliente(cliente, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, (int)cmbBebidaFavorita.SelectedIndex))
-                    {
-                        MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                        this.Hide();
-                    }
+                    controlador.ModificarCliente(cliente, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, (int)cmbBebidaFavorita.SelectedIndex);
+                    MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Hide();
                 }  
             }
             catch (Exception ex)

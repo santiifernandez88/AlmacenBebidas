@@ -1,18 +1,17 @@
-﻿using Data.Serializacion_Archivos;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Entidades.Archivos
 {
-    /*public class SerializadoraJSON<T> : ISerializable<T>
+    /*public class SerializadoraJSON : ISerializable<string>
     {
+       
 
-        public bool Escribir(T objeto, string path)
+        public bool Escribir(string objeto, string path)
         {
             try
             {
@@ -26,14 +25,14 @@ namespace Data
             };
         }
 
-        public void Leer(string path)
+        public string Leer(string path)
         {
-            T lista;
+            string lista =  "";
 
             try
             {
                 string json = File.ReadAllText(path);
-                lista = JsonConvert.DeserializeObject<T>(json);
+                lista = JsonConvert.DeserializeObject<string>(json);
             }
             catch (Exception ex)
             {
@@ -41,7 +40,7 @@ namespace Data
 
             }
 
-            
+            return  lista;
         }
     }*/
 }

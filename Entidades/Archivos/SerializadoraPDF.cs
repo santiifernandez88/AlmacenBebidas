@@ -1,21 +1,21 @@
-﻿using iTextSharp.text.pdf;
+﻿using Entidades.Bebidas;
+using Entidades.Ventas;
+using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Org.BouncyCastle.Crypto.Tls;
 
-
-namespace Data.Serializacion_Archivos
+namespace Entidades.Archivos
 {
     public class SerializadoraPDF
     {
-
-        /*public void GenerarTicket(string path, Ticket miTicket)
+        string pathTxt = Environment.CurrentDirectory + $@"/Archivos/Tickets/NumeroTicket.txt";
+        public void GenerarTicket(string path, Ticket miTicket, Bebida bebida, Bebida bebidaUnoCombo, Bebida bebidaDosCombo)
         {
-
+            SerializadoraTXT txt = new SerializadoraTXT();
             // Crear un nuevo documento PDF
             Document documento = new Document();
 
@@ -56,33 +56,37 @@ namespace Data.Serializacion_Archivos
 
             contenido.Add(new Chunk("Productos:", fuenteContenido));
             contenido.Add(Chunk.NEWLINE);
-
-            if(miTicket.Venta.IdBebida == 0)
+           
+            if (miTicket.Venta.IdBebida == 0)
             {
-                contenido.Add(new Chunk($"{miTicket.Venta.IdBebidaUnoCombo}", fuenteContenido));
+                
+                contenido.Add(new Chunk($"ID: {miTicket.Venta.IdBebidaUnoCombo} -- {bebidaUnoCombo.Marca}", fuenteContenido));
                 contenido.Add(Chunk.NEWLINE);
-                contenido.Add(new Chunk($"{miTicket.Venta.IdBebidaDosCombo}", fuenteContenido));
+                contenido.Add(new Chunk($"ID: {miTicket.Venta.IdBebidaDosCombo} -- {bebidaDosCombo.Marca}", fuenteContenido));
                 contenido.Add(Chunk.NEWLINE);
             }
             else
             {
-                contenido.Add(new Chunk($"{miTicket.Venta.IdBebida}", fuenteContenido));
+                contenido.Add(new Chunk($"ID: {miTicket.Venta.IdBebida} -- {bebida.Marca}", fuenteContenido));
+                contenido.Add(Chunk.NEWLINE);
             }
 
             contenido.Add(new Chunk("---------------------------------------------------", fuenteContenido));
             contenido.Add(Chunk.NEWLINE);
 
             contenido.Add(new Chunk($"Total: {miTicket.Venta.Ganancias}", fuenteContenido));
+            contenido.Add(Chunk.NEWLINE);
             contenido.Add(new Chunk($"Metodo de pago: {miTicket.Venta.MetodoDePago}", fuenteContenido));
             contenido.Alignment = Element.ALIGN_LEFT;
             documento.Add(contenido);
 
+            miTicket.Id++;
+            txt.Escribir(miTicket.Id.ToString(), pathTxt);
             // Cerrar el documento y el escritor
             documento.Close();
             escritor.Close();
 
-        }*/
-
+        }
 
     }
 }

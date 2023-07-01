@@ -11,15 +11,14 @@ namespace Entidades.Ventas
         private int id;
         private Venta venta;
 
-        private static int siguienteId = 1;
-
-        public Ticket(Venta venta)
+        public Ticket(Venta venta, int siguienteId)
         {
-            this.id = siguienteId++;
+            this.id = siguienteId;
             this.venta = venta;
         }
 
-        public int Id { get => id;}
+        
         public Venta Venta { get => venta; set => venta = value; }
+        public int Id { get => id; set => id = value; }
     }
 }

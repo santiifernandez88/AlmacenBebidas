@@ -75,44 +75,37 @@ namespace Bar.Formulario_Ventas
         {
             try 
             {
-                Cliente cliente = (Cliente)lstCliente.SelectedItem;
-                if ((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
+                if(!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
                 {
-                    Bebida bebida = (Bebida)lstBebidas.SelectedItem;
-                    /*admB1.ReservaStock += ManejadorReservaStock;
-                    admB1.SinStock += ManejadorSinStock;
-                    admB2.ReservaStock += ManejadorReservaStock;
-                    admB2.SinStock += ManejadorSinStock;*/
-                    if(!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
+                    Cliente cliente = (Cliente)lstCliente.SelectedItem;
+                    if((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
                     {
-                        if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebida.Id, cliente.Dni, this.usuario.Empleado.Id))
+                        Bebida bebida = (Bebida)lstBebidas.SelectedItem;
+                        /*admB1.ReservaStock += ManejadorReservaStock;
+                        admB1.SinStock += ManejadorSinStock;
+                        admB2.ReservaStock += ManejadorReservaStock;
+                        admB2.SinStock += ManejadorSinStock;*/
+                        controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebida.Id, cliente.Dni, this.usuario.Empleado.Id);
+                        MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
+                    }
+                    else
+                    {
+                        if((string)cmbBebida.SelectedItem == "Combo")
                         {
+                           /* admB1.ReservaStock += ManejadorReservaStock;
+                             admB1.SinStock += ManejadorSinStock;
+                             admB2.ReservaStock += ManejadorReservaStock;
+                             admB2.SinStock += ManejadorSinStock;*/
+                            controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebidaUno.Id, bebidaDos.Id, cliente.Dni, this.usuario.Empleado.Id);
                             MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
                             this.DialogResult = DialogResult.OK;
-                            this.Hide();
+                            this.Hide();  
                         }
                     }
-                   
                 }
-                else
-                {
-                    if ((string)cmbBebida.SelectedItem == "Combo")
-                    {
-                        /* admB1.ReservaStock += ManejadorReservaStock;
-                         admB1.SinStock += ManejadorSinStock;
-                         admB2.ReservaStock += ManejadorReservaStock;
-                         admB2.SinStock += ManejadorSinStock;*/
-                        if (!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
-                        {
-                            if (controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebidaUno.Id, bebidaDos.Id, cliente.Dni, this.usuario.Empleado.Id))
-                            {
-                                MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
-                                //this.DialogResult = DialogResult.OK;
-                                this.Hide();
-                            }
-                        }                          
-                    }
-                }
+                    
             }
             catch(Exception ex)
             {

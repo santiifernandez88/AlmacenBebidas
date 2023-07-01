@@ -111,7 +111,7 @@ namespace Entidades.Bebidas
                 if (b.Id == idBebida)
                 {
                     b.Stock--;
-                    //LanzadorEvento(b);
+                    LanzadorEvento(b);
                     break;
                 }
             }
