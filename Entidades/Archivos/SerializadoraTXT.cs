@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,25 @@ namespace Entidades.Archivos
             }
 
             return sb.ToString();
+        }
+
+        public void LogError(string path, Exception ex, string nombreClase, string nombreMetodo)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    string errorMessage = $"{DateTime.Now} - Error en {nombreClase}.{nombreMetodo}: {ex.Message}";
+                    writer.WriteLine(errorMessage);
+                    writer.WriteLine(ex.StackTrace);
+                    writer.WriteLine();
+                }
+            }
+            catch (Exception e)
+            {
+                // Manejo de errores al escribir en el archivo de registro de errores
+                Console.WriteLine("Error al escribir en el archivo de registro: " + e.Message);
+            }
         }
     }
 }

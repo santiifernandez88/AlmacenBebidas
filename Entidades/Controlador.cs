@@ -250,6 +250,15 @@ namespace Entidades
             return bebida;
         }
 
+        public void LogsErrores(Exception ex, string nombreClase, string nombreMetodo)
+        {
+            SerializadoraTXT txt = new SerializadoraTXT();
+            string path = Environment.CurrentDirectory + $@"/Archivos/LogsErrores/Errores.txt";
+
+            txt.LogError(path, ex, nombreClase, nombreMetodo);
+        }
+
+
         #endregion
     }
 }

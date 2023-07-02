@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Bar.Formulario_Inventario
 {
@@ -56,6 +57,9 @@ namespace Bar.Formulario_Inventario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }
         }
 
