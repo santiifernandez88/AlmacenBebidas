@@ -2,6 +2,7 @@
 using Entidades;
 using Entidades.Clientes;
 using Entidades.Empleados;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace Bar.Formulario_Clientes
     public partial class FormCliente : FormEmpleado
     {
         int celdaClickeada;
+        Usuario usuario;
         Controlador controlador = new Controlador();   
         protected override CreateParams CreateParams
         {

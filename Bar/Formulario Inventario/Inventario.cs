@@ -3,6 +3,7 @@ using Bar.Formulario_Inventario;
 using Entidades;
 using Entidades.Bebidas;
 using Entidades.Empleados;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace Bar
     public partial class Inventario : FormEmpleado
     {
         Controlador controlador = new Controlador();
+        Usuario usuario;
 
         protected override CreateParams CreateParams
         {
@@ -28,10 +30,10 @@ namespace Bar
                 return createParams;
             }
         }
-        public Inventario()
+        public Inventario(Usuario usuario)
         {
             InitializeComponent();
-
+            this.usuario = usuario;
         }
 
         private void Inventario_Load(object sender, EventArgs e)

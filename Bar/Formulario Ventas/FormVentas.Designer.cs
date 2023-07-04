@@ -37,6 +37,7 @@
             lblHistorial = new Label();
             dtgVentas = new DataGridView();
             btnGenerarComprobante = new Button();
+            btnInformeDiario = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgVentas).BeginInit();
             SuspendLayout();
             // 
@@ -56,7 +57,7 @@
             // 
             btnIniciarVenta.BackColor = Color.DarkSlateGray;
             btnIniciarVenta.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            btnIniciarVenta.Location = new Point(35, 185);
+            btnIniciarVenta.Location = new Point(35, 156);
             btnIniciarVenta.Name = "btnIniciarVenta";
             btnIniciarVenta.Size = new Size(218, 101);
             btnIniciarVenta.TabIndex = 4;
@@ -94,7 +95,7 @@
             // 
             btnBorrarVenta.BackColor = Color.DarkSlateGray;
             btnBorrarVenta.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            btnBorrarVenta.Location = new Point(35, 329);
+            btnBorrarVenta.Location = new Point(35, 288);
             btnBorrarVenta.Name = "btnBorrarVenta";
             btnBorrarVenta.Size = new Size(218, 101);
             btnBorrarVenta.TabIndex = 7;
@@ -138,13 +139,25 @@
             // 
             btnGenerarComprobante.BackColor = Color.DarkSlateGray;
             btnGenerarComprobante.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGenerarComprobante.Location = new Point(52, 478);
+            btnGenerarComprobante.Location = new Point(53, 428);
             btnGenerarComprobante.Name = "btnGenerarComprobante";
             btnGenerarComprobante.Size = new Size(181, 82);
             btnGenerarComprobante.TabIndex = 9;
             btnGenerarComprobante.Text = "Generar comprobante";
             btnGenerarComprobante.UseVisualStyleBackColor = false;
             btnGenerarComprobante.Click += btnGenerarComprobante_Click;
+            // 
+            // btnInformeDiario
+            // 
+            btnInformeDiario.BackColor = Color.DarkSlateGray;
+            btnInformeDiario.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnInformeDiario.Location = new Point(53, 537);
+            btnInformeDiario.Name = "btnInformeDiario";
+            btnInformeDiario.Size = new Size(181, 82);
+            btnInformeDiario.TabIndex = 10;
+            btnInformeDiario.Text = "Generar informe diario";
+            btnInformeDiario.UseVisualStyleBackColor = false;
+            btnInformeDiario.Click += btnInformeDiario_Click;
             // 
             // FormVentas
             // 
@@ -153,6 +166,7 @@
             BackgroundImage = Properties.Resources.gris;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1338, 697);
+            Controls.Add(btnInformeDiario);
             Controls.Add(btnGenerarComprobante);
             Controls.Add(dtgVentas);
             Controls.Add(lblHistorial);
@@ -179,5 +193,6 @@
         private Label lblHistorial;
         public DataGridView dtgVentas;
         private Button btnGenerarComprobante;
+        private Button btnInformeDiario;
     }
 }

@@ -8,6 +8,7 @@ using Entidades.Empleados;
 using Entidades.Usuarios;
 using Entidades.Ventas;
 using Entidades.Archivos;
+using System.ComponentModel;
 
 namespace Entidades
 {
@@ -26,7 +27,6 @@ namespace Entidades
         {
             return administradorCliente.TraerClienteDni(dni);
         }
-
 
         public void AltaCliente(string nombre, string apellido, string edadStr, string dniStr, int frecuenciaIndex)
         {       
@@ -258,7 +258,13 @@ namespace Entidades
             txt.LogError(path, ex, nombreClase, nombreMetodo);
         }
 
-
+        public void InformeDiarioVentas()
+        {
+            if(!administradorVenta.InformeDiarioVentas())
+            {
+                throw new Exception("No hay ventas al dia");
+            }
+        }
         #endregion
     }
 }

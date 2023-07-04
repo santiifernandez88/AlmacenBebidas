@@ -13,7 +13,7 @@ namespace Entidades.Ventas
         Debito,
         Credito
     }
-
+    [Serializable]
     public class Venta
     {
         private int id;
@@ -27,6 +27,11 @@ namespace Entidades.Ventas
         private int idBebidaDosCombo;
 
         private static int siguienteId = 1;
+
+        public Venta()
+        {
+
+        }
 
         public Venta(MetodoDePago metodoDePago, int dniCliente, int idBebida, int idEmpleado, float ganancias, DateTime fechaDeVenta)
         {

@@ -54,10 +54,9 @@ namespace Entidades.Archivos
                     writer.WriteLine();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                // Manejo de errores al escribir en el archivo de registro de errores
-                Console.WriteLine("Error al escribir en el archivo de registro: " + e.Message);
+                throw new Exception("Error al escribir en el archivo de registro: ");
             }
         }
     }

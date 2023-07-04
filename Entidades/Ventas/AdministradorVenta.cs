@@ -1,4 +1,5 @@
-﻿using Entidades.Bebidas;
+﻿using Entidades.Archivos;
+using Entidades.Bebidas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -158,6 +159,39 @@ namespace Entidades.Ventas
             }
 
             return venta;
+        }
+
+        public bool InformeDiarioVentas()
+        {
+            bool informado = false;
+            SerializadoraXML<Venta> xml = new SerializadoraXML<Venta>();
+            string path = Environment.CurrentDirectory + $@"/Archivos/InformesDiarios/Informes{DateTime.Today}.xml";
+
+            if(ConseguirVentasDiarias() is not null)
+            {
+                foreach (Venta venta in ConseguirVentasDiarias())
+                {
+                    xml.Escribir(venta, path);
+                    informado = true;   
+                }
+            }
+            
+            return informado;
+        }
+
+        public List<Venta> ConseguirVentasDiarias()
+        {
+            List<Venta> lista = new List<Venta>();
+
+            foreach (Venta venta in ObtenerTodos())
+            {
+                if (venta.FechaDeVenta >= DateTime.Today)
+                {
+                    lista.Add(venta);
+                }
+            }
+
+            return lista;
         }
 
     }

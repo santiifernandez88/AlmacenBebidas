@@ -92,6 +92,18 @@ namespace Bar
                 controlador.GenerarTicket(venta);
                 MessageBox.Show("Comprobante generado", "Comprobante", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnInformeDiario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                controlador.InformeDiarioVentas();
+            }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

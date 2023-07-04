@@ -7,48 +7,46 @@ using System.Xml.Serialization;
 
 namespace Entidades.Archivos
 {
-    public class SerializadoraXML
+    public class SerializadoraXML<T> : ISerializable<T> where T : class, new()
     {
-        /*private string pathfile;
-
-        public SerializadoraXML(string pathfile)
+        public SerializadoraXML()
         {
-            this.pathfile = pathfile;
+
         }
 
-        public T LeerXml<T>()
+        public T Leer(string path)
         {
-            T lista;
+            T info = default;
             try
             {
-                using (StreamReader sr = new StreamReader(pathfile))
+                using (StreamReader sr = new StreamReader(path))
                 {
-                    XmlSerializer des = new XmlSerializer(typeof(T));
-                    lista = (T)des.Deserialize(sr);
+                    XmlSerializer des = new XmlSerializer(typeof(List<T>));
+                    info = (T)des.Deserialize(sr);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Error al leer el archivo.");
             }
 
-            return lista;
+            return info;
         }
 
-        public void Escribir<T>(T queSerializar)
+        public void Escribir(T queSerializar, string path)
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(pathfile))
+                using (StreamWriter sw = new StreamWriter(path, true))
                 {
                     XmlSerializer ser = new XmlSerializer(typeof(T));
                     ser.Serialize(sw, queSerializar);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Error al escribir el archivo.");
             }
-        }*/
+        }
     }
 }

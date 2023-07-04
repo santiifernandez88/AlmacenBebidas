@@ -107,8 +107,7 @@ namespace Bar
 
         private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Inventario inventario = new Inventario();
-            inventario.UsuarioLogeado = usuario;
+            Inventario inventario = new Inventario(usuario);
             AbrirFormulario(inventario);
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.Archivos
 {
-    public interface ISerializable<T>
+    public interface ISerializable<T> 
     {
         public void Escribir(T objeto, string path);
 
