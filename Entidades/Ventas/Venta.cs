@@ -26,16 +26,36 @@ namespace Entidades.Ventas
         private int idBebidaUnoCombo;
         private int idBebidaDosCombo;
 
-        private static int siguienteId = 1;
-
         public Venta()
         {
 
         }
 
+        public Venta(int id,MetodoDePago metodoDePago, int dniCliente, int idBebida, int idEmpleado, float ganancias, DateTime fechaDeVenta)
+        {
+            this.id = id;
+            this.metodoDePago = metodoDePago;
+            this.dniCliente = dniCliente;
+            this.idBebida = idBebida;
+            this.idEmpleado = idEmpleado;
+            this.ganancias = ganancias;
+            this.fechaDeVenta = fechaDeVenta;
+        }
+
+        public Venta(int id, MetodoDePago metodoDePago, int dniCliente, int idEmpleado, float ganancias, DateTime fechaDeVenta, int idBebidaUnoCombo, int idBebidaDosCombo)
+        {
+            this.id = id;
+            this.metodoDePago = metodoDePago;
+            this.dniCliente = dniCliente;
+            this.idEmpleado = idEmpleado;
+            this.ganancias = ganancias;
+            this.fechaDeVenta = fechaDeVenta;
+            this.idBebidaUnoCombo = idBebidaUnoCombo;
+            this.idBebidaDosCombo = idBebidaDosCombo;
+        }
+
         public Venta(MetodoDePago metodoDePago, int dniCliente, int idBebida, int idEmpleado, float ganancias, DateTime fechaDeVenta)
         {
-            this.id = siguienteId++;
             this.metodoDePago = metodoDePago;
             this.dniCliente = dniCliente;
             this.idBebida = idBebida;
@@ -46,7 +66,6 @@ namespace Entidades.Ventas
 
         public Venta(MetodoDePago metodoDePago, int dniCliente, int idEmpleado, float ganancias, DateTime fechaDeVenta, int idBebidaUnoCombo, int idBebidaDosCombo)
         {
-            this.id = siguienteId++;
             this.metodoDePago = metodoDePago;
             this.dniCliente = dniCliente;
             this.idEmpleado = idEmpleado;
@@ -56,7 +75,7 @@ namespace Entidades.Ventas
             this.idBebidaDosCombo = idBebidaDosCombo;
         }
 
-        public int Id { get => id; }
+        public int Id { get => id; set => id = value; }
         public MetodoDePago MetodoDePago { get => metodoDePago; set => metodoDePago = value; }
         public int DniCliente { get => dniCliente; set => dniCliente = value; }
         public int IdBebida { get => idBebida; set => idBebida = value; }

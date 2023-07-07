@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.Bebidas
 {
-    internal interface IBebible<T>
+    public interface IBebible<T>
     {
         public float BuscarPrecioPorId(int id);
 

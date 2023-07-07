@@ -1,4 +1,5 @@
-﻿using Entidades.Usuarios;
+﻿using Data.BaseDeDatos.SQL;
+using Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,12 +72,15 @@ namespace Entidades.Empleados
 
                 if (ValidarEnLista(empleadoModificado) || empleadoModificado.Dni == empleado.Dni)
                 {
+                    empleadoModificado.Id = empleado.Id;
                     empleado.Apellido = empleadoModificado.Apellido;
                     empleado.Nombre = empleadoModificado.Nombre;
                     empleado.Edad = empleadoModificado.Edad;
                     empleado.Dni = empleadoModificado.Dni;
                     empleado.Sueldo = empleadoModificado.Sueldo;
                     empleado.Puesto = empleadoModificado.Puesto;
+                    EmpleadoSQL empleadoSQL = new EmpleadoSQL();
+                    empleadoSQL.Modificar(empleadoModificado);
                     modificado = true;
                 }
             }
@@ -92,10 +96,11 @@ namespace Entidades.Empleados
         public bool Agregar(Empleado empleado)
         {
             bool añadido = false;
+            EmpleadoSQL empleadoSQL = new EmpleadoSQL();
 
             if (ValidarEnLista(empleado))
             {
-                BaseDeDatos.GuardarEmpleado(empleado);
+                empleadoSQL.Agregar(empleado);
                 añadido = true;
             }
 
@@ -109,12 +114,13 @@ namespace Entidades.Empleados
         public bool Borrar(int idAEliminar)
         {
             bool eliminado = false;
+            EmpleadoSQL empleadoSQL = new EmpleadoSQL();
 
             foreach (Empleado emp in ObtenerTodos())
             {
                 if (emp.Id == idAEliminar)
                 {
-                    BaseDeDatos.EliminarEmpleado(emp);
+                    empleadoSQL.Borrar(emp.Id);
                     eliminado = true;
                     break;
                 }
@@ -129,7 +135,8 @@ namespace Entidades.Empleados
         /// <returns>lista de empleados</returns>
         public List<Empleado> ObtenerTodos()
         {
-            var listaEmpleados = BaseDeDatos.ObtenerEmpleados();
+            EmpleadoSQL empleadoSQL = new EmpleadoSQL();
+            List<Empleado> listaEmpleados = empleadoSQL.TraerTodo();
 
             return listaEmpleados;
         }

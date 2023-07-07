@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Data.BaseDeDatos
 {
-    internal interface IBaseDeDatos<T>
+    public interface IBaseDeDatos<T>
     {
+        public void Agregar(T objeto);
 
+        public void Modificar(T objeto);
 
+        public void Borrar(int id);
+
+        public List<T> TraerTodo();       
 
     }
 }

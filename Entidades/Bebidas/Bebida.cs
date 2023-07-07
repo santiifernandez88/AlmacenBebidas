@@ -15,19 +15,26 @@ namespace Entidades.Bebidas
         private int mLitros;
         private string descripcion;
 
-        private static int siguienteId = 1;
+        public Bebida(int id,string marca, float precio, int stock, int mLitros, string descripcion)
+        {
+            this.id = id;
+            this.marca = marca;
+            this.precio = precio;
+            this.stock = stock;
+            this.mLitros = mLitros;
+            this.descripcion = descripcion;
+        }
 
         public Bebida(string marca, float precio, int stock, int mLitros, string descripcion)
         {
             this.marca = marca;
             this.precio = precio;
             this.stock = stock;
-            id = siguienteId++;
             this.mLitros = mLitros;
             this.descripcion = descripcion;
         }
 
-        public int Id { get => id; }
+        public int Id { get => id; set => id = value; }
         public string Marca { get => marca; set => marca = value; }
         public float Precio { get => precio; set => precio = value; }
         public int Stock { get => stock; set => stock = value; }

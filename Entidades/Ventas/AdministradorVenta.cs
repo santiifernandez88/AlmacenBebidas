@@ -1,4 +1,5 @@
-﻿using Entidades.Archivos;
+﻿using Data.BaseDeDatos.SQL;
+using Entidades.Archivos;
 using Entidades.Bebidas;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace Entidades.Ventas
         /// <returns></returns>
         public List<Venta> ObtenerTodos()
         {
-            var listaVentas = BaseDeDatos.ObtenerVentas();
+            VentasSQL ventasSQL = new VentasSQL();
+            var listaVentas = ventasSQL.TraerTodo();
 
             return listaVentas;
         }
@@ -28,10 +30,11 @@ namespace Entidades.Ventas
         public bool Agregar(Venta venta)
         {
             bool agregado = false;
-           
-            if(ValidarEnLista(venta))
+            VentasSQL ventasSQL = new VentasSQL();
+
+            if (ValidarEnLista(venta))
             {
-                BaseDeDatos.GuardarVentas(venta);
+                ventasSQL.Agregar(venta);
                 agregado = true;
             }
             
@@ -45,12 +48,13 @@ namespace Entidades.Ventas
         public bool Borrar(int idAEliminar)
         {
             bool eliminado = false;
+            VentasSQL ventasSQL = new VentasSQL();
 
             foreach (Venta v in ObtenerTodos())
             {
                 if (v.Id == idAEliminar)
                 {
-                    BaseDeDatos.EliminarVenta(v);
+                    ventasSQL.Borrar(v.Id);
                     eliminado = true;
                     break;
                 }
@@ -96,30 +100,30 @@ namespace Entidades.Ventas
 
         public bool CrearVenta(int metodoInt, int idBebida, int dniCliente, int idEmpleado)
         {
-            AdministradorBebidaAlcoholica administradorBebidaAlcoholica = new AdministradorBebidaAlcoholica();
-            AdministradorBebidasNoAlcoholicas administradorBebidasNoAlcoholicas = new AdministradorBebidasNoAlcoholicas();
+            AdministradorBebidaAlcoholica adminBebAlc = new AdministradorBebidaAlcoholica();
+            AdministradorBebidasNoAlcoholicas adminBebNoAlc = new AdministradorBebidasNoAlcoholicas();
             bool validado = false;
             float ganancias;
             MetodoDePago metodo = (MetodoDePago)metodoInt;
             
-            if(administradorBebidaAlcoholica.ValidarIdBebida(idBebida))
+            if(adminBebAlc.ValidarIdBebida(idBebida))
             {
-                ganancias = administradorBebidaAlcoholica.BuscarPrecioPorId(idBebida);
+                ganancias = adminBebAlc.BuscarPrecioPorId(idBebida);
                 Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
                 if(Agregar(ventaNueva))
                 {
-                    administradorBebidaAlcoholica.DescontarStock(idBebida);
+                    adminBebAlc.DescontarStock(idBebida);
                     validado = true;
                 }
             }
             
-            if(administradorBebidasNoAlcoholicas.ValidarIdBebida(idBebida))
+            if(adminBebNoAlc.ValidarIdBebida(idBebida))
             {
-                ganancias = administradorBebidasNoAlcoholicas.BuscarPrecioPorId(idBebida);
+                ganancias = adminBebNoAlc.BuscarPrecioPorId(idBebida);
                 Venta ventaNueva = new Venta(metodo, dniCliente, idBebida, idEmpleado, ganancias, DateTime.Now);
                 if (Agregar(ventaNueva))
                 {
-                    administradorBebidasNoAlcoholicas.DescontarStock(idBebida);
+                    adminBebNoAlc.DescontarStock(idBebida);
                     validado = true;
                 }
             }

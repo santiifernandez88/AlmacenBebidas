@@ -100,8 +100,8 @@ namespace Bar
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCliente cliente = new FormCliente();
-            cliente.UsuarioLogeado = usuario;
+            FormCliente cliente = new FormCliente(usuario);
+ 
             AbrirFormulario(cliente);
         }
 

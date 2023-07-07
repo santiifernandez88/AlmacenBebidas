@@ -178,8 +178,6 @@ namespace Entidades
             {
                 throw new Exception("No se pudo crear la venta.");
             }
-
- 
         }
 
         public void BajaVenta(int idAEliminar) 

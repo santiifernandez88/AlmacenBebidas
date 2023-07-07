@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -91,6 +92,9 @@ namespace Bar
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }
         }
 

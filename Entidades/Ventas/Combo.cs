@@ -23,22 +23,20 @@ namespace Entidades.Ventas
 
         public static float BuscarPrecioCombo(int idbebidaUno, int idBebidaDos)
         {
-            AdministradorBebidaAlcoholica administradorBebidaAlcoholica = new AdministradorBebidaAlcoholica();
-            AdministradorBebidasNoAlcoholicas administradorBebidasNoAlcoholicas = new AdministradorBebidasNoAlcoholicas();
-
-            float precioUno = administradorBebidaAlcoholica.BuscarPrecioPorId(idbebidaUno);
-            float precioDos = administradorBebidasNoAlcoholicas.BuscarPrecioPorId(idBebidaDos);
+            AdministradorBebidaAlcoholica adminBebAlc = new AdministradorBebidaAlcoholica();
+            AdministradorBebidasNoAlcoholicas adminBebNoAlc = new AdministradorBebidasNoAlcoholicas();
+            float precioUno = adminBebAlc.BuscarPrecioPorId(idbebidaUno);
+            float precioDos = adminBebNoAlc.BuscarPrecioPorId(idBebidaDos);
 
             return precioUno + precioDos;
         }
 
         public static void DescontarStockCombo(int idbebidaUno, int idBebidaDos)
         {
-            AdministradorBebidaAlcoholica administradorBebidaAlcoholica = new AdministradorBebidaAlcoholica();
-            AdministradorBebidasNoAlcoholicas administradorBebidasNoAlcoholicas = new AdministradorBebidasNoAlcoholicas();
-
-            administradorBebidaAlcoholica.DescontarStock(idbebidaUno);
-            administradorBebidasNoAlcoholicas.DescontarStock(idBebidaDos);
+            AdministradorBebidaAlcoholica adminBebAlc = new AdministradorBebidaAlcoholica();
+            AdministradorBebidasNoAlcoholicas adminBebNoAlc = new AdministradorBebidasNoAlcoholicas();
+            adminBebAlc.DescontarStock(idbebidaUno);
+            adminBebNoAlc.DescontarStock(idBebidaDos);
 
         }
     }

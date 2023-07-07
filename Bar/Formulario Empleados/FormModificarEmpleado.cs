@@ -39,17 +39,16 @@ namespace Bar.Formulario_Empleados
             txtSueldo.Text = empleado.Sueldo.ToString();
             foreach (var puesto in Enum.GetValues(typeof(PuestosDeTrabajo)))
             {
-                cmbPuesto.Items.Add(puesto);
+                cmbPuestoTrabajo.Items.Add(puesto);
             }
-            cmbPuestoTrabajo.SelectedIndex = (int)empleado.Puesto;
-
+           
         }
 
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(cmbPuesto.Text))
+                if(!string.IsNullOrEmpty(cmbPuestoTrabajo.Text))
                 {
                     controlador.ModificarEmpleado(empleado, txtNombre.Text, txtApellido.Text, txtEdad.Text, txtDni.Text, txtSueldo.Text, (int)cmbPuestoTrabajo.SelectedIndex);
                     MessageBox.Show("Se pudo modificar el empleado correctamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);

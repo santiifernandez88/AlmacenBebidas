@@ -15,24 +15,22 @@ namespace Entidades.Empleados
         private float sueldo;
         private PuestosDeTrabajo puesto;
 
-        private static int siguienteId = 1;
-
-        public Empleado(string nombre, string apellido, int edad, int dni) : base(nombre, apellido, edad, dni)
-        {
-
-        }
-
         public Empleado(string nombre, string apellido, int edad, int dni, float sueldo, PuestosDeTrabajo puesto) : base(nombre, apellido, edad, dni)
         {
-            this.id = siguienteId++;
             this.sueldo = sueldo;
             this.puesto = puesto;
         }
 
-        public int Id { get => id; }
+        public Empleado(int id, string nombre, string apellido, int edad, int dni, float sueldo, PuestosDeTrabajo puesto) : base(nombre, apellido, edad, dni)
+        {
+            this.id = id;
+            this.sueldo = sueldo;
+            this.puesto = puesto;
+        }
+
+        public int Id { get => id; set => id = value; }
         public float Sueldo { get => sueldo; set => sueldo = value; }
         public PuestosDeTrabajo Puesto { get => puesto; set => puesto = value; }
-
 
 
         public static bool operator ==(Empleado emp1, Empleado emp2)

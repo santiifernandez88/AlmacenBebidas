@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.BaseDeDatos.SQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,8 @@ namespace Entidades.Usuarios
         /// <returns></returns>
         public List<Usuario> ObtenerTodos()
         {
-            var listaUsuarios = BaseDeDatos.ObtenerUsuarios();
+            UsuariosSQL usuariosSQL = new UsuariosSQL();
+            List<Usuario> listaUsuarios = usuariosSQL.TraerTodo();
 
             return listaUsuarios;
         }
@@ -26,9 +28,10 @@ namespace Entidades.Usuarios
         public bool Agregar(Usuario usuario)
         {
             bool agregado = false;
-            if(ValidarEnLista(usuario))
+            UsuariosSQL usuariosSQL = new UsuariosSQL();
+            if (ValidarEnLista(usuario))
             {
-                BaseDeDatos.GuardarUsuario(usuario);
+                usuariosSQL.Agregar(usuario);
                 agregado = true;
             }
             
@@ -83,7 +86,18 @@ namespace Entidades.Usuarios
         /// <returns></returns>
         public bool Borrar(int id)
         {
-            return false;
+            bool borrado = false;
+            UsuariosSQL usuariosSQL = new UsuariosSQL();
+
+            foreach (Usuario usu in ObtenerTodos())
+            {
+                if(usu.Empleado.Id == id)
+                {
+                    usuariosSQL.Borrar(id);
+                }
+            }
+
+            return borrado;
         }
     }
 }

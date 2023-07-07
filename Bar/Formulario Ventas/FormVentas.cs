@@ -3,6 +3,7 @@ using Entidades;
 using Entidades.Empleados;
 using Entidades.Usuarios;
 using Entidades.Ventas;
+using System.Reflection;
 
 namespace Bar
 {
@@ -80,6 +81,9 @@ namespace Bar
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }
         }
 

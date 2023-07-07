@@ -68,9 +68,16 @@ namespace Bar
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.usuario.NombreUsuario = txtNombreUsuario.Text;
-            this.usuario.Contraseña = txtPassword.Text;
-            MessageBox.Show("Se guardaron los cambios correctamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (string.IsNullOrEmpty(txtNombreUsuario.Text) && string.IsNullOrEmpty(txtPassword.Text))
+            {
+                this.usuario.NombreUsuario = txtNombreUsuario.Text;
+                this.usuario.Contraseña = txtPassword.Text;
+                MessageBox.Show("Se guardaron los cambios correctamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error, ingresar uno o mas caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnGuardarFoto_Click(object sender, EventArgs e)

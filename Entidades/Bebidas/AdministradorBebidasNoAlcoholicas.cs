@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.BaseDeDatos.SQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,9 +32,10 @@ namespace Entidades.Bebidas
         public bool Agregar(BebidaNoAlcoholica bebida)
         {
             bool agregado = false;
+            BebidaNoAlcoholicaSQL bebidaNoAlcoholicaSQL = new BebidaNoAlcoholicaSQL();
             if (ValidarEnLista(bebida))
             {
-                BaseDeDatos.GuardarBebidasNoAlcoholicas(bebida);
+                bebidaNoAlcoholicaSQL.Agregar(bebida);
                 agregado = true;
             }
 
@@ -43,12 +45,13 @@ namespace Entidades.Bebidas
         public bool Borrar(int id)
         {
             bool eliminado = false;
+            BebidaNoAlcoholicaSQL bebidaNoAlcoholicaSQL = new BebidaNoAlcoholicaSQL();
 
             foreach (BebidaNoAlcoholica b in ObtenerTodos())
             {
                 if (b.Id == id)
                 {
-                    BaseDeDatos.EliminarBebidaNoAlcoholica(b);
+                    bebidaNoAlcoholicaSQL.Borrar(b.Id);
                     eliminado = true;
                     break;
                 }
@@ -59,7 +62,8 @@ namespace Entidades.Bebidas
 
         public List<BebidaNoAlcoholica> ObtenerTodos()
         {
-            return BaseDeDatos.ObtenerBebidasNoAlcoholicas();
+            BebidaNoAlcoholicaSQL bebidaNoAlcoholicaSQL = new BebidaNoAlcoholicaSQL();
+            return bebidaNoAlcoholicaSQL.TraerTodo();
         }
 
         public bool ValidarEnLista(BebidaNoAlcoholica bebidaNoAlcoholica)

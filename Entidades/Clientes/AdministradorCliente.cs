@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.BaseDeDatos.SQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,10 +77,11 @@ namespace Entidades.Clientes
         public bool Agregar(Cliente cliente)
         {
             bool añadido = false;
+            ClienteSQL clienteSQL = new ClienteSQL();   
 
             if (ValidarEnLista(cliente))
             {
-                BaseDeDatos.GuardarCliente(cliente);
+                clienteSQL.Agregar(cliente);
                 añadido = true;
             }
 
@@ -93,12 +95,13 @@ namespace Entidades.Clientes
         public bool Borrar(int dniAEliminar)
         {
             bool eliminado = false;
+            ClienteSQL clienteSQL = new ClienteSQL();
 
             foreach (Cliente cliente in ObtenerTodos())
             {
                 if (cliente.Dni == dniAEliminar)
                 {
-                    BaseDeDatos.EliminarCliente(cliente);
+                    clienteSQL.Borrar(cliente.Dni);
                     eliminado = true;
                     break;
                 }
@@ -112,7 +115,8 @@ namespace Entidades.Clientes
         /// <returns>lista de clientes</returns>
         public List<Cliente> ObtenerTodos()
         {
-            var listaClientes = BaseDeDatos.ObtenerClientes();
+            ClienteSQL clienteSQL = new ClienteSQL();
+            var listaClientes = clienteSQL.TraerTodo();
 
             return listaClientes;
         }

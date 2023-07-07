@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace Bar.Formulario_Empleados
     public partial class FormEmpleado : Form
     {
         Controlador controlador = new Controlador();
-        protected Usuario usuario = new Usuario("aaa", "aaa", new Empleado("a", "a", 1, 1));
+        protected Usuario usuario = new Usuario("aaa", "aaa", new Empleado("a", "a", 1, 1, 1, PuestosDeTrabajo.Jefe));
         int celdaClickeada;
 
         protected override CreateParams CreateParams
@@ -76,6 +77,7 @@ namespace Bar.Formulario_Empleados
             try
             {
                 int idAEliminar = (int)dtgEmpleado.Rows[celdaClickeada].Cells[0].Value;
+
                 DialogResult dg = MessageBox.Show("Estas seguro que quieres eliminar a un empleado?", "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
                 {
@@ -87,6 +89,9 @@ namespace Bar.Formulario_Empleados
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }            
         }
 

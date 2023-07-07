@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,9 +30,10 @@ namespace Bar.Formulario_Clientes
                 return createParams;
             }
         }
-        public FormCliente()
+        public FormCliente(Usuario usuario)
         {
             InitializeComponent();
+            this.usuario = usuario;
 
         }
 
@@ -83,6 +85,9 @@ namespace Bar.Formulario_Clientes
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }    
         }
 

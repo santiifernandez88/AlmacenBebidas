@@ -22,8 +22,8 @@ namespace Bar.Formulario_Ventas
         Usuario usuario;
         BebidaAlcoholica bebidaUno;
         BebidaNoAlcoholica bebidaDos;
-        AdministradorBebidaAlcoholica admB1 = new AdministradorBebidaAlcoholica();
-        AdministradorBebidasNoAlcoholicas admB2 = new AdministradorBebidasNoAlcoholicas();
+        AdministradorBebidaAlcoholica admBebAlc = new AdministradorBebidaAlcoholica();
+        AdministradorBebidasNoAlcoholicas admBebNoAlc = new AdministradorBebidasNoAlcoholicas();
 
         public FormIngresarVenta(Usuario usuario)
         {
@@ -79,14 +79,14 @@ namespace Bar.Formulario_Ventas
                 if(!string.IsNullOrEmpty(cmbBebida.Text) && !string.IsNullOrEmpty(cmbMetodoPago.Text))
                 {
                     Cliente cliente = (Cliente)lstCliente.SelectedItem;
-                    if((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
+                    if ((string)cmbBebida.SelectedItem == "Bebida alcoholica" || (string)cmbBebida.SelectedItem == "Bebida no alcoholica")
                     {
                         Bebida bebida = (Bebida)lstBebidas.SelectedItem;
-                        /*admB1.ReservaStock += ManejadorReservaStock;
-                        admB1.SinStock += ManejadorSinStock;
-                        admB2.ReservaStock += ManejadorReservaStock;
-                        admB2.SinStock += ManejadorSinStock;*/
                         controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebida.Id, cliente.Dni, this.usuario.Empleado.Id);
+                        admBebAlc.ReservaStock += ManejadorReservaStock;
+                        admBebAlc.SinStock += ManejadorSinStock;
+                        admBebNoAlc.SinStock += ManejadorSinStock;
+                        admBebNoAlc.ReservaStock += ManejadorReservaStock;
                         MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
                         this.DialogResult = DialogResult.OK;
                         this.Hide();
@@ -95,11 +95,11 @@ namespace Bar.Formulario_Ventas
                     {
                         if((string)cmbBebida.SelectedItem == "Combo")
                         {
-                           /* admB1.ReservaStock += ManejadorReservaStock;
-                             admB1.SinStock += ManejadorSinStock;
-                             admB2.ReservaStock += ManejadorReservaStock;
-                             admB2.SinStock += ManejadorSinStock;*/
                             controlador.AltaVenta(cmbMetodoPago.SelectedIndex, bebidaUno.Id, bebidaDos.Id, cliente.Dni, this.usuario.Empleado.Id);
+                            admBebAlc.ReservaStock += ManejadorReservaStock;
+                            admBebAlc.SinStock += ManejadorSinStock;
+                            admBebNoAlc.SinStock += ManejadorSinStock;
+                            admBebNoAlc.ReservaStock += ManejadorReservaStock;
                             MessageBox.Show("Se pudo añadir la venta al historial.", "Añadir venta.");
                             this.DialogResult = DialogResult.OK;
                             this.Hide();  

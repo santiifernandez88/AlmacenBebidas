@@ -1,5 +1,6 @@
 using Entidades;
 using Entidades.Usuarios;
+using System.Reflection;
 
 namespace Bar
 {
@@ -25,6 +26,9 @@ namespace Bar
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string nombreClse = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string nombreMetodo = MethodBase.GetCurrentMethod().Name;
+                controlador.LogsErrores(ex, nombreClse, nombreMetodo);
             }           
         }
 

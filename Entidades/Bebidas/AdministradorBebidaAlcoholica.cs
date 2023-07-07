@@ -1,4 +1,5 @@
-﻿using Entidades.Ventas;
+﻿using Data.BaseDeDatos.SQL;
+using Entidades.Ventas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,10 @@ namespace Entidades.Bebidas
         public bool Agregar(BebidaAlcoholica bebidaAlcoholica)
         {
             bool agregado = false;
+            BebidaAlcoholicaSQL bebidaAlcoholicaSQL = new BebidaAlcoholicaSQL();
             if(ValidarEnLista(bebidaAlcoholica)) 
             {
-                BaseDeDatos.GuardarBebidasAlcoholicas(bebidaAlcoholica);
+                bebidaAlcoholicaSQL.Agregar(bebidaAlcoholica);
                 agregado = true;
             }
             
@@ -45,12 +47,13 @@ namespace Entidades.Bebidas
         public bool Borrar(int id)
         {
             bool eliminado = false;
+            BebidaAlcoholicaSQL bebidaAlcoholicaSQL = new BebidaAlcoholicaSQL();
 
-            foreach(BebidaAlcoholica bebida in ObtenerTodos())
+            foreach (BebidaAlcoholica bebida in ObtenerTodos())
             {
                 if (bebida.Id == id)
                 {
-                    BaseDeDatos.EliminarBebidaAlcoholica(bebida);
+                    bebidaAlcoholicaSQL.Borrar(bebida.Id);
                     eliminado = true;
                     break;
                 }
@@ -61,7 +64,8 @@ namespace Entidades.Bebidas
 
         public List<BebidaAlcoholica> ObtenerTodos()
         {
-            return BaseDeDatos.ObtenerBebidasAlcoholicas();
+            BebidaAlcoholicaSQL bebidaAlcoholicaSQL = new BebidaAlcoholicaSQL();
+            return bebidaAlcoholicaSQL.TraerTodo();
         }
 
         public bool ValidarEnLista(BebidaAlcoholica bebidaAlcoholica)
@@ -111,7 +115,7 @@ namespace Entidades.Bebidas
                 if (b.Id == idBebida)
                 {
                     b.Stock--;
-                    //LanzadorEvento(b);
+                    LanzadorEvento(b);
                     break;
                 }
             }
